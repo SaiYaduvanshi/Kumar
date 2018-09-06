@@ -1,0 +1,1590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C88875F-7900-4F28-A6C1-75AE9EAEF460}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EgmYKS</RootNamespace>
+    <AssemblyName>EgmYKS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Yazılım\PROJECT\CALISMALAR\EgmIys\EgmIYS_2017_03_25\EgmIYS\bin\DevExpress.Data.v14.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Yazılım\PROJECT\CALISMALAR\EgmIys\EgmIYS_2017_03_25\EgmIYS\bin\DevExpress.Printing.v14.1.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Yazılım\PROJECT\CALISMALAR\EgmIys\EgmIYS_2017_03_25\EgmIYS\bin\DevExpress.RichEdit.v14.1.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Yazılım\PROJECT\CALISMALAR\EgmIys\EgmIYS_2017_03_25\EgmIYS\bin\DevExpress.Utils.v14.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Yazılım\PROJECT\CALISMALAR\EgmIys\EgmIYS_2017_03_25\EgmIYS\bin\DevExpress.Web.ASPxThemes.v14.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Yazılım\PROJECT\CALISMALAR\EgmIys\EgmIYS_2017_03_25\EgmIYS\bin\DevExpress.Web.v14.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Yazılım\PROJECT\CALISMALAR\EgmIys\EgmIYS_2017_03_25\EgmIYS\bin\DevExpress.XtraPrinting.v14.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.8.2\lib\net40\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.24\lib\net40\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.2.0.1\lib\net40\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.0\lib\net40\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Alarm.aspx" />
+    <Content Include="AllLog.aspx" />
+    <Content Include="AltOlay.aspx" />
+    <Content Include="AracMarka.aspx" />
+    <Content Include="AracTipi.aspx" />
+    <Content Include="BolgeKontrol.aspx" />
+    <Content Include="CaddeTanimla.aspx" />
+    <Content Include="cssmap\animate.css" />
+    <Content Include="cssmap\bootstrap.css" />
+    <Content Include="cssmap\font-awesome.css" />
+    <Content Include="cssmap\main.css" />
+    <Content Include="cssmap\pushy.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\custom.css" />
+    <Content Include="css\fonts\fontawesome\fontawesome-webfont.svg" />
+    <Content Include="css\fonts\Glyphicons PRO %28License%29.txt" />
+    <Content Include="css\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.svg" />
+    <Content Include="css\fonts\glyphicons.halflings.pro\glyphicons-halflings-regular.svg" />
+    <Content Include="css\fonts\glyphicons.pro\glyphicons-regular.svg" />
+    <Content Include="css\fonts\glyphicons.social.pro\glyphicons-social-regular.svg" />
+    <Content Include="css\main.css" />
+    <Content Include="css\plugins.css" />
+    <Content Include="css\theme.min.css" />
+    <Content Include="css\themes.css" />
+    <Content Include="css\themes\amethyst.css" />
+    <Content Include="css\themes\autumn.css" />
+    <Content Include="css\themes\bootstrap.min.css" />
+    <Content Include="css\themes\fancy.css" />
+    <Content Include="css\themes\fire.css" />
+    <Content Include="css\themes\flatie.css" />
+    <Content Include="css\themes\modern.css" />
+    <Content Include="css\themes\night.css" />
+    <Content Include="css\themes\spring.css" />
+    <Content Include="Dashboard.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Ekipler.aspx" />
+    <Content Include="EkipTelefon.aspx" />
+    <Content Include="Favicon\favicon.png" />
+    <Content Include="Grup.aspx" />
+    <Content Include="GuvenlikSirket.aspx" />
+    <Content Include="IhbarDurumRapor.aspx" />
+    <Content Include="IhbarEkipRapor.aspx" />
+    <Content Include="IhbarIlceRapor.aspx" />
+    <Content Include="IhbarKullaniciRapor.aspx" />
+    <Content Include="IhbarTarihRapor.aspx" />
+    <Content Include="IlceMahTanimla.aspx" />
+    <Content Include="IlceTanimla.aspx" />
+    <Content Include="images\Add_16x16.png" />
+    <Content Include="images\Apply_16x16.png" />
+    <Content Include="images\bck2.jpg" />
+    <Content Include="images\bck4.png" />
+    <Content Include="images\bck5.jpg" />
+    <Content Include="images\Close_16x16.png" />
+    <Content Include="images\DeleteList2_16x16.png" />
+    <Content Include="images\ekip.png" />
+    <Content Include="images\ExportToXLSX_16x16.png" />
+    <Content Include="images\Forward_16x16.png" />
+    <Content Include="images\ListNumbers_16x16.png" />
+    <Content Include="images\ok.png" />
+    <Content Include="images\Refresh_16x16.png" />
+    <Content Include="images\Show_16x16.png" />
+    <Content Include="images\Team_16x16.png" />
+    <Content Include="images\time.png" />
+    <Content Include="images\ul.png" />
+    <Content Include="images\İcon.png" />
+    <Content Include="img\favicon.ico" />
+    <Content Include="img\icon114.png" />
+    <Content Include="img\icon120.png" />
+    <Content Include="img\icon144.png" />
+    <Content Include="img\icon152.png" />
+    <Content Include="img\icon57.png" />
+    <Content Include="img\icon72.png" />
+    <Content Include="img\icon76.png" />
+    <Content Include="img\jquery.chosen\chosen-sprite%402x.png" />
+    <Content Include="img\jquery.chosen\chosen-sprite.png" />
+    <Content Include="img\jquery.datatables\sort_asc%402x.png" />
+    <Content Include="img\jquery.datatables\sort_asc.png" />
+    <Content Include="img\jquery.datatables\sort_asc_disabled%402x.png" />
+    <Content Include="img\jquery.datatables\sort_asc_disabled.png" />
+    <Content Include="img\jquery.datatables\sort_both%402x.png" />
+    <Content Include="img\jquery.datatables\sort_both.png" />
+    <Content Include="img\jquery.datatables\sort_desc%402x.png" />
+    <Content Include="img\jquery.datatables\sort_desc.png" />
+    <Content Include="img\jquery.datatables\sort_desc_disabled%402x.png" />
+    <Content Include="img\jquery.datatables\sort_desc_disabled.png" />
+    <Content Include="img\jquery.select2\select2-spinner.gif" />
+    <Content Include="img\jquery.select2\select2.png" />
+    <Content Include="img\jquery.select2\select2x2.png" />
+    <Content Include="img\template\ie8_opacity_dark_15.png" />
+    <Content Include="img\template\ie8_opacity_dark_20.png" />
+    <Content Include="img\template\ie8_opacity_dark_30.png" />
+    <Content Include="img\template\ie8_opacity_dark_40.png" />
+    <Content Include="img\template\ie8_opacity_dark_60.png" />
+    <Content Include="img\template\ie8_opacity_light_10.png" />
+    <Content Include="img\template\ie8_opacity_light_75.png" />
+    <Content Include="IslemSonucTurleri.aspx" />
+    <Content Include="jsmap\Haritajs.js" />
+    <Content Include="jsmap\map.js" />
+    <Content Include="jsmap\map_index.js" />
+    <Content Include="jsmap\map_place.js" />
+    <Content Include="jsmap\map_place_friends.js" />
+    <Content Include="jsmap\map_visits.js" />
+    <Content Include="js\all_scr.js" />
+    <Content Include="js\app.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\Chart.min.js" />
+    <Content Include="js\ckeditor\adapters\jquery.js" />
+    <Content Include="js\ckeditor\build-config.js" />
+    <Content Include="js\ckeditor\ckeditor.js" />
+    <Content Include="js\ckeditor\config.js" />
+    <Content Include="js\ckeditor\contents.css" />
+    <Content Include="js\ckeditor\lang\af.js" />
+    <Content Include="js\ckeditor\lang\ar.js" />
+    <Content Include="js\ckeditor\lang\bg.js" />
+    <Content Include="js\ckeditor\lang\bn.js" />
+    <Content Include="js\ckeditor\lang\bs.js" />
+    <Content Include="js\ckeditor\lang\ca.js" />
+    <Content Include="js\ckeditor\lang\cs.js" />
+    <Content Include="js\ckeditor\lang\cy.js" />
+    <Content Include="js\ckeditor\lang\da.js" />
+    <Content Include="js\ckeditor\lang\de.js" />
+    <Content Include="js\ckeditor\lang\el.js" />
+    <Content Include="js\ckeditor\lang\en-au.js" />
+    <Content Include="js\ckeditor\lang\en-ca.js" />
+    <Content Include="js\ckeditor\lang\en-gb.js" />
+    <Content Include="js\ckeditor\lang\en.js" />
+    <Content Include="js\ckeditor\lang\eo.js" />
+    <Content Include="js\ckeditor\lang\es.js" />
+    <Content Include="js\ckeditor\lang\et.js" />
+    <Content Include="js\ckeditor\lang\eu.js" />
+    <Content Include="js\ckeditor\lang\fa.js" />
+    <Content Include="js\ckeditor\lang\fi.js" />
+    <Content Include="js\ckeditor\lang\fo.js" />
+    <Content Include="js\ckeditor\lang\fr-ca.js" />
+    <Content Include="js\ckeditor\lang\fr.js" />
+    <Content Include="js\ckeditor\lang\gl.js" />
+    <Content Include="js\ckeditor\lang\gu.js" />
+    <Content Include="js\ckeditor\lang\he.js" />
+    <Content Include="js\ckeditor\lang\hi.js" />
+    <Content Include="js\ckeditor\lang\hr.js" />
+    <Content Include="js\ckeditor\lang\hu.js" />
+    <Content Include="js\ckeditor\lang\id.js" />
+    <Content Include="js\ckeditor\lang\is.js" />
+    <Content Include="js\ckeditor\lang\it.js" />
+    <Content Include="js\ckeditor\lang\ja.js" />
+    <Content Include="js\ckeditor\lang\ka.js" />
+    <Content Include="js\ckeditor\lang\km.js" />
+    <Content Include="js\ckeditor\lang\ko.js" />
+    <Content Include="js\ckeditor\lang\ku.js" />
+    <Content Include="js\ckeditor\lang\lt.js" />
+    <Content Include="js\ckeditor\lang\lv.js" />
+    <Content Include="js\ckeditor\lang\mk.js" />
+    <Content Include="js\ckeditor\lang\mn.js" />
+    <Content Include="js\ckeditor\lang\ms.js" />
+    <Content Include="js\ckeditor\lang\nb.js" />
+    <Content Include="js\ckeditor\lang\nl.js" />
+    <Content Include="js\ckeditor\lang\no.js" />
+    <Content Include="js\ckeditor\lang\pl.js" />
+    <Content Include="js\ckeditor\lang\pt-br.js" />
+    <Content Include="js\ckeditor\lang\pt.js" />
+    <Content Include="js\ckeditor\lang\ro.js" />
+    <Content Include="js\ckeditor\lang\ru.js" />
+    <Content Include="js\ckeditor\lang\si.js" />
+    <Content Include="js\ckeditor\lang\sk.js" />
+    <Content Include="js\ckeditor\lang\sl.js" />
+    <Content Include="js\ckeditor\lang\sq.js" />
+    <Content Include="js\ckeditor\lang\sr-latn.js" />
+    <Content Include="js\ckeditor\lang\sr.js" />
+    <Content Include="js\ckeditor\lang\sv.js" />
+    <Content Include="js\ckeditor\lang\th.js" />
+    <Content Include="js\ckeditor\lang\tr.js" />
+    <Content Include="js\ckeditor\lang\ug.js" />
+    <Content Include="js\ckeditor\lang\uk.js" />
+    <Content Include="js\ckeditor\lang\vi.js" />
+    <Content Include="js\ckeditor\lang\zh-cn.js" />
+    <Content Include="js\ckeditor\lang\zh.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\ko.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\zh.js" />
+    <Content Include="js\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="js\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="js\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="js\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="js\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="js\ckeditor\plugins\colordialog\dialogs\colordialog.js" />
+    <Content Include="js\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="js\ckeditor\plugins\div\dialogs\div.js" />
+    <Content Include="js\ckeditor\plugins\fakeobjects\images\spacer.gif" />
+    <Content Include="js\ckeditor\plugins\find\dialogs\find.js" />
+    <Content Include="js\ckeditor\plugins\flash\dialogs\flash.js" />
+    <Content Include="js\ckeditor\plugins\flash\images\placeholder.png" />
+    <Content Include="js\ckeditor\plugins\forms\dialogs\button.js" />
+    <Content Include="js\ckeditor\plugins\forms\dialogs\checkbox.js" />
+    <Content Include="js\ckeditor\plugins\forms\dialogs\form.js" />
+    <Content Include="js\ckeditor\plugins\forms\dialogs\hiddenfield.js" />
+    <Content Include="js\ckeditor\plugins\forms\dialogs\radio.js" />
+    <Content Include="js\ckeditor\plugins\forms\dialogs\select.js" />
+    <Content Include="js\ckeditor\plugins\forms\dialogs\textarea.js" />
+    <Content Include="js\ckeditor\plugins\forms\dialogs\textfield.js" />
+    <Content Include="js\ckeditor\plugins\forms\images\hiddenfield.gif" />
+    <Content Include="js\ckeditor\plugins\icons.png" />
+    <Content Include="js\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="js\ckeditor\plugins\iframe\dialogs\iframe.js" />
+    <Content Include="js\ckeditor\plugins\iframe\images\placeholder.png" />
+    <Content Include="js\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="js\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="js\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="js\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="js\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="js\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="js\ckeditor\plugins\liststyle\dialogs\liststyle.js" />
+    <Content Include="js\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="js\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="js\ckeditor\plugins\pagebreak\images\pagebreak.gif" />
+    <Content Include="js\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="js\ckeditor\plugins\preview\preview.html" />
+    <Content Include="js\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="js\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_address.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_blockquote.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_div.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_h1.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_h2.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_h3.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_h4.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_h5.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_h6.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_p.png" />
+    <Content Include="js\ckeditor\plugins\showblocks\images\block_pre.png" />
+    <Content Include="js\ckeditor\plugins\smiley\dialogs\smiley.js" />
+    <Content Include="js\ckeditor\plugins\smiley\images\angel_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\angel_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\angry_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\angry_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\broken_heart.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\broken_heart.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\confused_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\confused_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\cry_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\cry_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\devil_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\devil_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\embaressed_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\embarrassed_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\embarrassed_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\envelope.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\envelope.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\heart.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\heart.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\kiss.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\kiss.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\lightbulb.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\lightbulb.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\omg_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\omg_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\regular_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\regular_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\sad_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\sad_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\shades_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\shades_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\teeth_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\teeth_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\thumbs_down.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\thumbs_down.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\thumbs_up.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\thumbs_up.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\tongue_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\tongue_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\tounge_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\whatchutalkingabout_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\whatchutalkingabout_smile.png" />
+    <Content Include="js\ckeditor\plugins\smiley\images\wink_smile.gif" />
+    <Content Include="js\ckeditor\plugins\smiley\images\wink_smile.png" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\km.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\zh.js" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="js\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="js\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="js\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="js\ckeditor\plugins\templates\dialogs\templates.css" />
+    <Content Include="js\ckeditor\plugins\templates\dialogs\templates.js" />
+    <Content Include="js\ckeditor\plugins\templates\templates\default.js" />
+    <Content Include="js\ckeditor\plugins\templates\templates\images\template1.gif" />
+    <Content Include="js\ckeditor\plugins\templates\templates\images\template2.gif" />
+    <Content Include="js\ckeditor\plugins\templates\templates\images\template3.gif" />
+    <Content Include="js\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="js\ckeditor\plugins\wsc\dialogs\tmp.html" />
+    <Content Include="js\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="js\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="js\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="js\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="js\ckeditor\samples\ajax.html" />
+    <Content Include="js\ckeditor\samples\api.html" />
+    <Content Include="js\ckeditor\samples\appendto.html" />
+    <Content Include="js\ckeditor\samples\assets\inlineall\logo.png" />
+    <Content Include="js\ckeditor\samples\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="js\ckeditor\samples\assets\sample.css" />
+    <Content Include="js\ckeditor\samples\assets\sample.jpg" />
+    <Content Include="js\ckeditor\samples\assets\uilanguages\languages.js" />
+    <Content Include="js\ckeditor\samples\datafiltering.html" />
+    <Content Include="js\ckeditor\samples\divreplace.html" />
+    <Content Include="js\ckeditor\samples\index.html" />
+    <Content Include="js\ckeditor\samples\inlineall.html" />
+    <Content Include="js\ckeditor\samples\inlinebycode.html" />
+    <Content Include="js\ckeditor\samples\inlinetextarea.html" />
+    <Content Include="js\ckeditor\samples\jquery.html" />
+    <Content Include="js\ckeditor\samples\plugins\dialog\assets\my_dialog.js" />
+    <Content Include="js\ckeditor\samples\plugins\dialog\dialog.html" />
+    <Content Include="js\ckeditor\samples\plugins\enterkey\enterkey.html" />
+    <Content Include="js\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.swf" />
+    <Content Include="js\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\swfobject.js" />
+    <Content Include="js\ckeditor\samples\plugins\htmlwriter\outputforflash.html" />
+    <Content Include="js\ckeditor\samples\plugins\htmlwriter\outputhtml.html" />
+    <Content Include="js\ckeditor\samples\plugins\magicline\magicline.html" />
+    <Content Include="js\ckeditor\samples\plugins\toolbar\toolbar.html" />
+    <Content Include="js\ckeditor\samples\plugins\wysiwygarea\fullpage.html" />
+    <Content Include="js\ckeditor\samples\readonly.html" />
+    <Content Include="js\ckeditor\samples\replacebyclass.html" />
+    <Content Include="js\ckeditor\samples\replacebycode.html" />
+    <Content Include="js\ckeditor\samples\sample.css" />
+    <Content Include="js\ckeditor\samples\sample.js" />
+    <Content Include="js\ckeditor\samples\tabindex.html" />
+    <Content Include="js\ckeditor\samples\uicolor.html" />
+    <Content Include="js\ckeditor\samples\uilanguages.html" />
+    <Content Include="js\ckeditor\samples\xhtmlstyle.html" />
+    <Content Include="js\ckeditor\skins\moono\dialog.css" />
+    <Content Include="js\ckeditor\skins\moono\dialog_ie.css" />
+    <Content Include="js\ckeditor\skins\moono\dialog_ie7.css" />
+    <Content Include="js\ckeditor\skins\moono\dialog_ie8.css" />
+    <Content Include="js\ckeditor\skins\moono\dialog_iequirks.css" />
+    <Content Include="js\ckeditor\skins\moono\dialog_opera.css" />
+    <Content Include="js\ckeditor\skins\moono\editor.css" />
+    <Content Include="js\ckeditor\skins\moono\editor_gecko.css" />
+    <Content Include="js\ckeditor\skins\moono\editor_ie.css" />
+    <Content Include="js\ckeditor\skins\moono\editor_ie7.css" />
+    <Content Include="js\ckeditor\skins\moono\editor_ie8.css" />
+    <Content Include="js\ckeditor\skins\moono\editor_iequirks.css" />
+    <Content Include="js\ckeditor\skins\moono\icons.png" />
+    <Content Include="js\ckeditor\skins\moono\icons_hidpi.png" />
+    <Content Include="js\ckeditor\skins\moono\images\arrow.png" />
+    <Content Include="js\ckeditor\skins\moono\images\close.png" />
+    <Content Include="js\ckeditor\skins\moono\images\hidpi\close.png" />
+    <Content Include="js\ckeditor\skins\moono\images\hidpi\lock-open.png" />
+    <Content Include="js\ckeditor\skins\moono\images\hidpi\lock.png" />
+    <Content Include="js\ckeditor\skins\moono\images\hidpi\refresh.png" />
+    <Content Include="js\ckeditor\skins\moono\images\lock-open.png" />
+    <Content Include="js\ckeditor\skins\moono\images\lock.png" />
+    <Content Include="js\ckeditor\skins\moono\images\refresh.png" />
+    <Content Include="js\ckeditor\styles.js" />
+    <Content Include="js\easy-responsive-tabs.js" />
+    <Content Include="js\effects.js" />
+    <Content Include="js\Haritajs.js" />
+    <Content Include="js\helpers\excanvas.min.js" />
+    <Content Include="js\helpers\gmaps.min.js" />
+    <Content Include="js\infobox.js" />
+    <Content Include="js\javascript_responsive.js" />
+    <Content Include="js\jflickrfeed.js" />
+    <Content Include="js\jquery-1.10.1.min.js" />
+    <Content Include="js\jquery.fancybox.js" />
+    <Content Include="js\jquery.menufication.min.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\jquery.parallax-0.2-min.js" />
+    <Content Include="js\lightbox.js" />
+    <Content Include="js\map.js" />
+    <Content Include="js\map_index.js" />
+    <Content Include="js\map_place.js" />
+    <Content Include="js\map_place_friends.js" />
+    <Content Include="js\map_visits.js" />
+    <Content Include="js\menufication-setup.js" />
+    <Content Include="js\pages\compAnimations.js" />
+    <Content Include="js\pages\compCalendar.js" />
+    <Content Include="js\pages\compCharts.js" />
+    <Content Include="js\pages\compMaps.js" />
+    <Content Include="js\pages\formsGeneral.js" />
+    <Content Include="js\pages\formsValidation.js" />
+    <Content Include="js\pages\formsWizard.js" />
+    <Content Include="js\pages\icons.js" />
+    <Content Include="js\pages\index.js" />
+    <Content Include="js\pages\login.js" />
+    <Content Include="js\pages\readyChat.js" />
+    <Content Include="js\pages\readyInbox.js" />
+    <Content Include="js\pages\readyInboxCompose.js" />
+    <Content Include="js\pages\readyProfile.js" />
+    <Content Include="js\pages\readyTasks.js" />
+    <Content Include="js\pages\readyTickets.js" />
+    <Content Include="js\pages\readyTimeline.js" />
+    <Content Include="js\pages\tablesDatatables.js" />
+    <Content Include="js\pages\tablesGeneral.js" />
+    <Content Include="js\pages\uiDraggable.js" />
+    <Content Include="js\pages\uiProgress.js" />
+    <Content Include="js\pages\uiTypography.js" />
+    <Content Include="js\pages\widgetsSocial.js" />
+    <Content Include="js\pages\widgetsStats.js" />
+    <Content Include="js\plugins.js" />
+    <Content Include="js\prototype.js" />
+    <Content Include="js\scriptaculous.js" />
+    <Content Include="js\vendor\bootstrap.min.js" />
+    <Content Include="js\vendor\jquery-1.11.1.min.js" />
+    <Content Include="js\vendor\modernizr-2.7.1-respond-1.4.2.min.js" />
+    <Content Include="js\wow.min.js" />
+    <Content Include="KanalGrup.aspx" />
+    <Content Include="Kanallar.aspx" />
+    <Content Include="Karakol.aspx" />
+    <Content Include="KaraListe.aspx" />
+    <Content Include="KullaniciDetay.aspx" />
+    <Content Include="KullaniciListesi.aspx" />
+    <Content Include="less\fonts\fontawesome\fontawesome-webfont.svg" />
+    <Content Include="less\fonts\Glyphicons PRO %28License%29.txt" />
+    <Content Include="less\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.svg" />
+    <Content Include="less\fonts\glyphicons.halflings.pro\glyphicons-halflings-regular.svg" />
+    <Content Include="less\fonts\glyphicons.pro\glyphicons-regular.svg" />
+    <Content Include="less\fonts\glyphicons.social.pro\glyphicons-social-regular.svg" />
+    <Content Include="less\js\less.min.js" />
+    <Content Include="Login.aspx" />
+    <Content Include="MahalleTanimla.aspx" />
+    <Content Include="mapicon\icon1.png" />
+    <Content Include="mapicon\icon2.png" />
+    <Content Include="Musteri.aspx" />
+    <Content Include="openlayers\bootstrap.min.js" />
+    <Content Include="openlayers\dist\bundle.js" />
+    <Content Include="openlayers\dist\bundle.min.js" />
+    <Content Include="openlayers\jquery-3.2.1.min.js" />
+    <Content Include="openlayers\map-marker-icon24.png" />
+    <Content Include="openlayers\map-marker-icon32.png" />
+    <Content Include="openlayers\marker.png" />
+    <Content Include="openlayers\ol-popup-style.css" />
+    <Content Include="openlayers\ol.css" />
+    <Content Include="openlayers\ol.js" />
+    <Content Include="Rapor.aspx" />
+    <Content Include="rs-plugin\assets\arrowleft.png" />
+    <Content Include="rs-plugin\assets\arrowright.png" />
+    <Content Include="rs-plugin\assets\arrow_large_left.png" />
+    <Content Include="rs-plugin\assets\arrow_large_right.png" />
+    <Content Include="rs-plugin\assets\arrow_left.png" />
+    <Content Include="rs-plugin\assets\arrow_left2.png" />
+    <Content Include="rs-plugin\assets\arrow_right.png" />
+    <Content Include="rs-plugin\assets\arrow_right2.png" />
+    <Content Include="rs-plugin\assets\black50.png" />
+    <Content Include="rs-plugin\assets\boxed_bgtile.png" />
+    <Content Include="rs-plugin\assets\bullet.png" />
+    <Content Include="rs-plugin\assets\bullets.png" />
+    <Content Include="rs-plugin\assets\bullets2.png" />
+    <Content Include="rs-plugin\assets\bullet_boxed.png" />
+    <Content Include="rs-plugin\assets\coloredbg.png" />
+    <Content Include="rs-plugin\assets\grain.png" />
+    <Content Include="rs-plugin\assets\gridtile.png" />
+    <Content Include="rs-plugin\assets\gridtile_3x3.png" />
+    <Content Include="rs-plugin\assets\gridtile_3x3_white.png" />
+    <Content Include="rs-plugin\assets\gridtile_white.png" />
+    <Content Include="rs-plugin\assets\large_left.png" />
+    <Content Include="rs-plugin\assets\large_right.png" />
+    <Content Include="rs-plugin\assets\loader.gif" />
+    <Content Include="rs-plugin\assets\loader2.gif" />
+    <Content Include="rs-plugin\assets\navigdots.png" />
+    <Content Include="rs-plugin\assets\navigdots_bgtile.png" />
+    <Content Include="rs-plugin\assets\shadow1.png" />
+    <Content Include="rs-plugin\assets\shadow2.png" />
+    <Content Include="rs-plugin\assets\shadow3.png" />
+    <Content Include="rs-plugin\assets\small_left.png" />
+    <Content Include="rs-plugin\assets\small_left_boxed.png" />
+    <Content Include="rs-plugin\assets\small_right.png" />
+    <Content Include="rs-plugin\assets\small_right_boxed.png" />
+    <Content Include="rs-plugin\assets\timer.png" />
+    <Content Include="rs-plugin\assets\timerdot.png" />
+    <Content Include="rs-plugin\assets\transparent.jpg" />
+    <Content Include="rs-plugin\assets\white50.png" />
+    <Content Include="rs-plugin\css\settings-ie8.css" />
+    <Content Include="rs-plugin\css\settings.css" />
+    <Content Include="rs-plugin\font\revicons.svg" />
+    <Content Include="rs-plugin\images\decor_inside.png" />
+    <Content Include="rs-plugin\images\decor_inside_white.png" />
+    <Content Include="rs-plugin\images\decor_testimonial.png" />
+    <Content Include="rs-plugin\images\gradient\g30.png" />
+    <Content Include="rs-plugin\images\gradient\g40.png" />
+    <Content Include="rs-plugin\js\jquery.themepunch.enablelog.js" />
+    <Content Include="rs-plugin\js\jquery.themepunch.revolution.js" />
+    <Content Include="rs-plugin\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="rs-plugin\js\jquery.themepunch.tools.min.js" />
+    <Content Include="Subeler.aspx" />
+    <Content Include="Ucntrl\CaddeTanimla.ascx" />
+    <Content Include="Ucntrl\Guvenlik\Ucntrl_Alarm.ascx" />
+    <Content Include="Ucntrl\Calinti_Arac\Ucntrl_AracTipleri.ascx" />
+    <Content Include="Ucntrl\Calinti_Arac\Ucntrl_Marka.ascx" />
+    <Content Include="Ucntrl\Guvenlik\Ucntrl_GuvenlikMusteri.ascx" />
+    <Content Include="Ucntrl\Guvenlik\Ucntrl_GuvenlikSirket.ascx" />
+    <Content Include="Ucntrl\Ucntrl_AllLog.ascx" />
+    <Content Include="Ucntrl\Ucntrl_KanalGrup.ascx" />
+    <Content Include="Ucntrl\Ucntrl_KaraKol.ascx" />
+    <Content Include="Ucntrl\Ucntrl_IslemSonuc.ascx" />
+    <Content Include="Ucntrl\Ucntrl_Karaliste.ascx" />
+    <Content Include="Ucntrl\Ucntrl_Telefon.ascx" />
+    <Content Include="Ucntrl\Ucntrl_Ekip.ascx" />
+    <Content Include="Ucntrl\Ucntrl_Grup.ascx" />
+    <Content Include="Ucntrl\Ucntrl_IhbarRapor.ascx" />
+    <Content Include="Ucntrl\Ucntrl_Sube.ascx" />
+    <Content Include="Ucntrl\Ucntrl_Kanal.ascx" />
+    <Content Include="Ucntrl\Ucntrl_Dashboard.ascx" />
+    <Content Include="Ucntrl\Ucntrl_AltOlayList.ascx" />
+    <Content Include="Ucntrl\Ucntrl_UstOlayList.ascx" />
+    <Content Include="Ucntrl\Ucntrl_KullaniciList.ascx" />
+    <Content Include="Ucntrl\Ucntrl_YeniKullanici.ascx" />
+    <Content Include="Ucntrl\Ucntrl_Yetki.ascx" />
+    <Content Include="openlayers\dist\bundle.js.map" />
+    <Content Include="openlayers\dist\bundle.min.js.map" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Ucntrl\Ucntrol_BolgeKontrol.ascx" />
+    <Content Include="Ucntrl\Ucntrol_CaddeTanimla.ascx" />
+    <Content Include="Ucntrl\Ucntrol_ihbarDurumGrafik.ascx" />
+    <Content Include="Ucntrl\Ucntrol_IhbarDurumRapor.ascx" />
+    <Content Include="Ucntrl\Ucntrol_ihbarDurumRaporGrafik.ascx" />
+    <Content Include="Ucntrl\Ucntrol_IhbarEkipRapor.ascx" />
+    <Content Include="Ucntrl\Ucntrol_IhbarIlceRapor.ascx" />
+    <Content Include="Ucntrl\Ucntrol_IhbarKullaniciRapor.ascx" />
+    <Content Include="Ucntrl\Ucntrol_IhbarTarihiRapor.ascx" />
+    <Content Include="Ucntrl\Ucntrol_IlceMahTanimla.ascx" />
+    <Content Include="Ucntrl\Ucntrol_IlceTanimla.ascx" />
+    <Content Include="Ucntrl\Ucntrol_KanalDurumGrafik.ascx" />
+    <Content Include="Ucntrl\Ucntrol_MahalleTanimla.ascx" />
+    <Content Include="Ucntrl\Ucntrol_TarihBazliRaporGrafik.ascx" />
+    <Content Include="Ucntrl\Ucntrol_UstOlayDurumGrafik.ascx" />
+    <Content Include="UstOlay.aspx" />
+    <Content Include="Web References\WebReference\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\WebReference\Service1.disco" />
+    <Content Include="YeniKullanici.aspx" />
+    <Content Include="Yetki.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\fonts\fontawesome\fontawesome-webfont.eot" />
+    <Content Include="css\fonts\fontawesome\fontawesome-webfont.ttf" />
+    <Content Include="css\fonts\fontawesome\fontawesome-webfont.woff" />
+    <Content Include="css\fonts\fontawesome\FontAwesome.otf" />
+    <Content Include="css\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.eot" />
+    <Content Include="css\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.ttf" />
+    <Content Include="css\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.woff" />
+    <Content Include="css\fonts\glyphicons.halflings.pro\glyphicons-halflings-regular.eot" />
+    <Content Include="css\fonts\glyphicons.halflings.pro\glyphicons-halflings-regular.ttf" />
+    <Content Include="css\fonts\glyphicons.halflings.pro\glyphicons-halflings-regular.woff" />
+    <Content Include="css\fonts\glyphicons.pro\glyphicons-regular.eot" />
+    <Content Include="css\fonts\glyphicons.pro\glyphicons-regular.ttf" />
+    <Content Include="css\fonts\glyphicons.pro\glyphicons-regular.woff" />
+    <Content Include="css\fonts\glyphicons.social.pro\glyphicons-social-regular.eot" />
+    <Content Include="css\fonts\glyphicons.social.pro\glyphicons-social-regular.ttf" />
+    <Content Include="css\fonts\glyphicons.social.pro\glyphicons-social-regular.woff" />
+    <Content Include="js\ckeditor\CHANGES.md" />
+    <Content Include="js\ckeditor\LICENSE.md" />
+    <Content Include="js\ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="js\ckeditor\plugins\scayt\README.md" />
+    <Content Include="js\ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="js\ckeditor\plugins\wsc\README.md" />
+    <Content Include="js\ckeditor\README.md" />
+    <Content Include="js\ckeditor\samples\assets\posteddata.php" />
+    <Content Include="js\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="js\ckeditor\samples\sample_posteddata.php" />
+    <Content Include="js\ckeditor\skins\moono\readme.md" />
+    <Content Include="less\bootstrap\alerts.less" />
+    <Content Include="less\bootstrap\badges.less" />
+    <Content Include="less\bootstrap\bootstrap.less" />
+    <Content Include="less\bootstrap\breadcrumbs.less" />
+    <Content Include="less\bootstrap\button-groups.less" />
+    <Content Include="less\bootstrap\buttons.less" />
+    <Content Include="less\bootstrap\carousel.less" />
+    <Content Include="less\bootstrap\close.less" />
+    <Content Include="less\bootstrap\code.less" />
+    <Content Include="less\bootstrap\component-animations.less" />
+    <Content Include="less\bootstrap\dropdowns.less" />
+    <Content Include="less\bootstrap\forms.less" />
+    <Content Include="less\bootstrap\glyphicons.less" />
+    <Content Include="less\bootstrap\grid.less" />
+    <Content Include="less\bootstrap\input-groups.less" />
+    <Content Include="less\bootstrap\jumbotron.less" />
+    <Content Include="less\bootstrap\labels.less" />
+    <Content Include="less\bootstrap\list-group.less" />
+    <Content Include="less\bootstrap\media.less" />
+    <Content Include="less\bootstrap\mixins.less" />
+    <Content Include="less\bootstrap\mixins\alerts.less" />
+    <Content Include="less\bootstrap\mixins\background-variant.less" />
+    <Content Include="less\bootstrap\mixins\border-radius.less" />
+    <Content Include="less\bootstrap\mixins\buttons.less" />
+    <Content Include="less\bootstrap\mixins\center-block.less" />
+    <Content Include="less\bootstrap\mixins\clearfix.less" />
+    <Content Include="less\bootstrap\mixins\forms.less" />
+    <Content Include="less\bootstrap\mixins\gradients.less" />
+    <Content Include="less\bootstrap\mixins\grid-framework.less" />
+    <Content Include="less\bootstrap\mixins\grid.less" />
+    <Content Include="less\bootstrap\mixins\hide-text.less" />
+    <Content Include="less\bootstrap\mixins\image.less" />
+    <Content Include="less\bootstrap\mixins\labels.less" />
+    <Content Include="less\bootstrap\mixins\list-group.less" />
+    <Content Include="less\bootstrap\mixins\nav-divider.less" />
+    <Content Include="less\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="less\bootstrap\mixins\opacity.less" />
+    <Content Include="less\bootstrap\mixins\pagination.less" />
+    <Content Include="less\bootstrap\mixins\panels.less" />
+    <Content Include="less\bootstrap\mixins\progress-bar.less" />
+    <Content Include="less\bootstrap\mixins\reset-filter.less" />
+    <Content Include="less\bootstrap\mixins\resize.less" />
+    <Content Include="less\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="less\bootstrap\mixins\size.less" />
+    <Content Include="less\bootstrap\mixins\tab-focus.less" />
+    <Content Include="less\bootstrap\mixins\table-row.less" />
+    <Content Include="less\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="less\bootstrap\mixins\text-overflow.less" />
+    <Content Include="less\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="less\bootstrap\modals.less" />
+    <Content Include="less\bootstrap\navbar.less" />
+    <Content Include="less\bootstrap\navs.less" />
+    <Content Include="less\bootstrap\normalize.less" />
+    <Content Include="less\bootstrap\pager.less" />
+    <Content Include="less\bootstrap\pagination.less" />
+    <Content Include="less\bootstrap\panels.less" />
+    <Content Include="less\bootstrap\popovers.less" />
+    <Content Include="less\bootstrap\print.less" />
+    <Content Include="less\bootstrap\progress-bars.less" />
+    <Content Include="less\bootstrap\responsive-embed.less" />
+    <Content Include="less\bootstrap\responsive-utilities.less" />
+    <Content Include="less\bootstrap\scaffolding.less" />
+    <Content Include="less\bootstrap\tables.less" />
+    <Content Include="less\bootstrap\theme.less" />
+    <Content Include="less\bootstrap\thumbnails.less" />
+    <Content Include="less\bootstrap\tooltip.less" />
+    <Content Include="less\bootstrap\type.less" />
+    <Content Include="less\bootstrap\utilities.less" />
+    <Content Include="less\bootstrap\variables.less" />
+    <Content Include="less\bootstrap\wells.less" />
+    <Content Include="less\fonts\fontawesome\fontawesome-webfont.eot" />
+    <Content Include="less\fonts\fontawesome\fontawesome-webfont.ttf" />
+    <Content Include="less\fonts\fontawesome\fontawesome-webfont.woff" />
+    <Content Include="less\fonts\fontawesome\FontAwesome.otf" />
+    <Content Include="less\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.eot" />
+    <Content Include="less\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.ttf" />
+    <Content Include="less\fonts\glyphicons.filetypes.pro\glyphicons-filetypes-regular.woff" />
+    <Content Include="less\fonts\glyphicons.halflings.pro\glyphicons-halflings-regular.eot" />
+    <Content Include="less\fonts\glyphicons.halflings.pro\glyphicons-halflings-regular.ttf" />
+    <Content Include="less\fonts\glyphicons.halflings.pro\glyphicons-halflings-regular.woff" />
+    <Content Include="less\fonts\glyphicons.pro\glyphicons-regular.eot" />
+    <Content Include="less\fonts\glyphicons.pro\glyphicons-regular.ttf" />
+    <Content Include="less\fonts\glyphicons.pro\glyphicons-regular.woff" />
+    <Content Include="less\fonts\glyphicons.social.pro\glyphicons-social-regular.eot" />
+    <Content Include="less\fonts\glyphicons.social.pro\glyphicons-social-regular.ttf" />
+    <Content Include="less\fonts\glyphicons.social.pro\glyphicons-social-regular.woff" />
+    <Content Include="less\main\bs_overwrite.less" />
+    <Content Include="less\main\content.less" />
+    <Content Include="less\main\extras.less" />
+    <Content Include="less\main\header.less" />
+    <Content Include="less\main\layout.less" />
+    <Content Include="less\main\pages.less" />
+    <Content Include="less\main\sidebar_nav.less" />
+    <Content Include="less\plugins\chosen.less" />
+    <Content Include="less\plugins\css3_animations.less" />
+    <Content Include="less\plugins\datatables.less" />
+    <Content Include="less\plugins\datepicker.less" />
+    <Content Include="less\plugins\dropzone.less" />
+    <Content Include="less\plugins\easy_pie_chart.less" />
+    <Content Include="less\plugins\font_awesome.less" />
+    <Content Include="less\plugins\full_calendar.less" />
+    <Content Include="less\plugins\glyphicons.less" />
+    <Content Include="less\plugins\magnific_popup.less" />
+    <Content Include="less\plugins\nprogress.less" />
+    <Content Include="less\plugins\prism.less" />
+    <Content Include="less\plugins\select2.less" />
+    <Content Include="less\plugins\slider.less" />
+    <Content Include="less\plugins\tags_input.less" />
+    <Content Include="less\plugins\timepicker.less" />
+    <Content Include="less\plugins\wysihtml5.less" />
+    <Content Include="less\styles.less" />
+    <Content Include="less\themes.less" />
+    <Content Include="less\themes\amethyst.less" />
+    <Content Include="less\themes\autumn.less" />
+    <Content Include="less\themes\fancy.less" />
+    <Content Include="less\themes\fire.less" />
+    <Content Include="less\themes\flatie.less" />
+    <Content Include="less\themes\modern.less" />
+    <Content Include="less\themes\night.less" />
+    <Content Include="less\themes\spring.less" />
+    <Content Include="less\variables.less" />
+    <Content Include="MasterPages\Master.Master" />
+    <Content Include="rs-plugin\.DS_Store" />
+    <Content Include="rs-plugin\assets\arrows.psd" />
+    <Content Include="rs-plugin\assets\bullets.psd" />
+    <Content Include="rs-plugin\assets\small_arrows.psd" />
+    <Content Include="rs-plugin\font\revicons.eot" />
+    <Content Include="rs-plugin\font\revicons.ttf" />
+    <Content Include="rs-plugin\font\revicons.woff" />
+    <Content Include="rs-plugin\images\.DS_Store" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alarm.aspx.cs">
+      <DependentUpon>Alarm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alarm.aspx.designer.cs">
+      <DependentUpon>Alarm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllLog.aspx.cs">
+      <DependentUpon>AllLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllLog.aspx.designer.cs">
+      <DependentUpon>AllLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AltOlay.aspx.cs">
+      <DependentUpon>AltOlay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltOlay.aspx.designer.cs">
+      <DependentUpon>AltOlay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AracMarka.aspx.cs">
+      <DependentUpon>AracMarka.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AracMarka.aspx.designer.cs">
+      <DependentUpon>AracMarka.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AracTipi.aspx.cs">
+      <DependentUpon>AracTipi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AracTipi.aspx.designer.cs">
+      <DependentUpon>AracTipi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BolgeKontrol.aspx.cs">
+      <DependentUpon>BolgeKontrol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BolgeKontrol.aspx.designer.cs">
+      <DependentUpon>BolgeKontrol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CaddeTanimla.aspx.cs">
+      <DependentUpon>CaddeTanimla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CaddeTanimla.aspx.designer.cs">
+      <DependentUpon>CaddeTanimla.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ekipler.aspx.cs">
+      <DependentUpon>Ekipler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ekipler.aspx.designer.cs">
+      <DependentUpon>Ekipler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EkipTelefon.aspx.cs">
+      <DependentUpon>EkipTelefon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EkipTelefon.aspx.designer.cs">
+      <DependentUpon>EkipTelefon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Grup.aspx.cs">
+      <DependentUpon>Grup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Grup.aspx.designer.cs">
+      <DependentUpon>Grup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GuvenlikSirket.aspx.cs">
+      <DependentUpon>GuvenlikSirket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GuvenlikSirket.aspx.designer.cs">
+      <DependentUpon>GuvenlikSirket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IhbarDurumRapor.aspx.cs">
+      <DependentUpon>IhbarDurumRapor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IhbarDurumRapor.aspx.designer.cs">
+      <DependentUpon>IhbarDurumRapor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IhbarEkipRapor.aspx.cs">
+      <DependentUpon>IhbarEkipRapor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IhbarEkipRapor.aspx.designer.cs">
+      <DependentUpon>IhbarEkipRapor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IhbarIlceRapor.aspx.cs">
+      <DependentUpon>IhbarIlceRapor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IhbarIlceRapor.aspx.designer.cs">
+      <DependentUpon>IhbarIlceRapor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IhbarKullaniciRapor.aspx.cs">
+      <DependentUpon>IhbarKullaniciRapor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IhbarKullaniciRapor.aspx.designer.cs">
+      <DependentUpon>IhbarKullaniciRapor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IhbarTarihRapor.aspx.cs">
+      <DependentUpon>IhbarTarihRapor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IhbarTarihRapor.aspx.designer.cs">
+      <DependentUpon>IhbarTarihRapor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IlceMahTanimla.aspx.cs">
+      <DependentUpon>IlceMahTanimla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IlceMahTanimla.aspx.designer.cs">
+      <DependentUpon>IlceMahTanimla.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IlceTanimlama.aspx.cs">
+      <DependentUpon>IlceTanimla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IlceTanimlama.aspx.designer.cs">
+      <DependentUpon>IlceTanimla.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IslemSonucTurleri.aspx.cs">
+      <DependentUpon>IslemSonucTurleri.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IslemSonucTurleri.aspx.designer.cs">
+      <DependentUpon>IslemSonucTurleri.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KanalGrup.aspx.cs">
+      <DependentUpon>KanalGrup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KanalGrup.aspx.designer.cs">
+      <DependentUpon>KanalGrup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Kanallar.aspx.cs">
+      <DependentUpon>Kanallar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kanallar.aspx.designer.cs">
+      <DependentUpon>Kanallar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Karakol.aspx.cs">
+      <DependentUpon>Karakol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Karakol.aspx.designer.cs">
+      <DependentUpon>Karakol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KaraListe.aspx.cs">
+      <DependentUpon>KaraListe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KaraListe.aspx.designer.cs">
+      <DependentUpon>KaraListe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KullaniciDetay.aspx.cs">
+      <DependentUpon>KullaniciDetay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KullaniciDetay.aspx.designer.cs">
+      <DependentUpon>KullaniciDetay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KullaniciListesi.aspx.cs">
+      <DependentUpon>KullaniciListesi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KullaniciListesi.aspx.designer.cs">
+      <DependentUpon>KullaniciListesi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MahalleTanimla.aspx.cs">
+      <DependentUpon>MahalleTanimla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MahalleTanimla.aspx.designer.cs">
+      <DependentUpon>MahalleTanimla.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Master.Master.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Master.Master.designer.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Musteri.aspx.cs">
+      <DependentUpon>Musteri.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Musteri.aspx.designer.cs">
+      <DependentUpon>Musteri.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Rapor.aspx.cs">
+      <DependentUpon>Rapor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rapor.aspx.designer.cs">
+      <DependentUpon>Rapor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Subeler.aspx.cs">
+      <DependentUpon>Subeler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Subeler.aspx.designer.cs">
+      <DependentUpon>Subeler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\CaddeTanimla.ascx.cs">
+      <DependentUpon>CaddeTanimla.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\CaddeTanimla.ascx.designer.cs">
+      <DependentUpon>CaddeTanimla.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Guvenlik\Ucntrl_Alarm.ascx.cs">
+      <DependentUpon>Ucntrl_Alarm.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Guvenlik\Ucntrl_Alarm.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Alarm.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Calinti_Arac\Ucntrl_AracTipleri.ascx.cs">
+      <DependentUpon>Ucntrl_AracTipleri.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Calinti_Arac\Ucntrl_AracTipleri.ascx.designer.cs">
+      <DependentUpon>Ucntrl_AracTipleri.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Calinti_Arac\Ucntrl_Marka.ascx.cs">
+      <DependentUpon>Ucntrl_Marka.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Calinti_Arac\Ucntrl_Marka.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Marka.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Guvenlik\Ucntrl_GuvenlikMusteri.ascx.cs">
+      <DependentUpon>Ucntrl_GuvenlikMusteri.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Guvenlik\Ucntrl_GuvenlikMusteri.ascx.designer.cs">
+      <DependentUpon>Ucntrl_GuvenlikMusteri.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Guvenlik\Ucntrl_GuvenlikSirket.ascx.cs">
+      <DependentUpon>Ucntrl_GuvenlikSirket.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Guvenlik\Ucntrl_GuvenlikSirket.ascx.designer.cs">
+      <DependentUpon>Ucntrl_GuvenlikSirket.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_AllLog.ascx.cs">
+      <DependentUpon>Ucntrl_AllLog.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_AllLog.ascx.designer.cs">
+      <DependentUpon>Ucntrl_AllLog.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_KanalGrup.ascx.cs">
+      <DependentUpon>Ucntrl_KanalGrup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_KanalGrup.ascx.designer.cs">
+      <DependentUpon>Ucntrl_KanalGrup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_KaraKol.ascx.cs">
+      <DependentUpon>Ucntrl_KaraKol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_KaraKol.ascx.designer.cs">
+      <DependentUpon>Ucntrl_KaraKol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_IslemSonuc.ascx.cs">
+      <DependentUpon>Ucntrl_IslemSonuc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_IslemSonuc.ascx.designer.cs">
+      <DependentUpon>Ucntrl_IslemSonuc.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Karaliste.ascx.cs">
+      <DependentUpon>Ucntrl_Karaliste.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Karaliste.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Karaliste.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Telefon.ascx.cs">
+      <DependentUpon>Ucntrl_Telefon.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Telefon.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Telefon.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Ekip.ascx.cs">
+      <DependentUpon>Ucntrl_Ekip.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Ekip.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Ekip.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Grup.ascx.cs">
+      <DependentUpon>Ucntrl_Grup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Grup.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Grup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_IhbarRapor.ascx.cs">
+      <DependentUpon>Ucntrl_IhbarRapor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_IhbarRapor.ascx.designer.cs">
+      <DependentUpon>Ucntrl_IhbarRapor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Sube.ascx.cs">
+      <DependentUpon>Ucntrl_Sube.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Sube.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Sube.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Kanal.ascx.cs">
+      <DependentUpon>Ucntrl_Kanal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Kanal.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Kanal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Dashboard.ascx.cs">
+      <DependentUpon>Ucntrl_Dashboard.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Dashboard.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Dashboard.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_AltOlayList.ascx.cs">
+      <DependentUpon>Ucntrl_AltOlayList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_AltOlayList.ascx.designer.cs">
+      <DependentUpon>Ucntrl_AltOlayList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_UstOlayList.ascx.cs">
+      <DependentUpon>Ucntrl_UstOlayList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_UstOlayList.ascx.designer.cs">
+      <DependentUpon>Ucntrl_UstOlayList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_KullaniciList.ascx.cs">
+      <DependentUpon>Ucntrl_KullaniciList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_KullaniciList.ascx.designer.cs">
+      <DependentUpon>Ucntrl_KullaniciList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_YeniKullanici.ascx.cs">
+      <DependentUpon>Ucntrl_YeniKullanici.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_YeniKullanici.ascx.designer.cs">
+      <DependentUpon>Ucntrl_YeniKullanici.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Yetki.ascx.cs">
+      <DependentUpon>Ucntrl_Yetki.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrl_Yetki.ascx.designer.cs">
+      <DependentUpon>Ucntrl_Yetki.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_BolgeKontrol.ascx.cs">
+      <DependentUpon>Ucntrol_BolgeKontrol.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_BolgeKontrol.ascx.designer.cs">
+      <DependentUpon>Ucntrol_BolgeKontrol.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_CaddeTanimla.ascx.cs">
+      <DependentUpon>Ucntrol_CaddeTanimla.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_CaddeTanimla.ascx.designer.cs">
+      <DependentUpon>Ucntrol_CaddeTanimla.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_ihbarDurumGrafik.ascx.cs">
+      <DependentUpon>Ucntrol_ihbarDurumGrafik.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_ihbarDurumGrafik.ascx.designer.cs">
+      <DependentUpon>Ucntrol_ihbarDurumGrafik.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarDurumRapor.ascx.cs">
+      <DependentUpon>Ucntrol_IhbarDurumRapor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarDurumRapor.ascx.designer.cs">
+      <DependentUpon>Ucntrol_IhbarDurumRapor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_ihbarDurumRaporGrafik.ascx.cs">
+      <DependentUpon>Ucntrol_ihbarDurumRaporGrafik.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_ihbarDurumRaporGrafik.ascx.designer.cs">
+      <DependentUpon>Ucntrol_ihbarDurumRaporGrafik.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarEkipRapor.ascx.cs">
+      <DependentUpon>Ucntrol_IhbarEkipRapor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarEkipRapor.ascx.designer.cs">
+      <DependentUpon>Ucntrol_IhbarEkipRapor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarIlceRapor.ascx.cs">
+      <DependentUpon>Ucntrol_IhbarIlceRapor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarIlceRapor.ascx.designer.cs">
+      <DependentUpon>Ucntrol_IhbarIlceRapor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarKullaniciRapor.ascx.cs">
+      <DependentUpon>Ucntrol_IhbarKullaniciRapor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarKullaniciRapor.ascx.designer.cs">
+      <DependentUpon>Ucntrol_IhbarKullaniciRapor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarTarihiRapor.ascx.cs">
+      <DependentUpon>Ucntrol_IhbarTarihiRapor.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IhbarTarihiRapor.ascx.designer.cs">
+      <DependentUpon>Ucntrol_IhbarTarihiRapor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IlceMahTanimla.ascx.cs">
+      <DependentUpon>Ucntrol_IlceMahTanimla.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IlceMahTanimla.ascx.designer.cs">
+      <DependentUpon>Ucntrol_IlceMahTanimla.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IlceTanimla.ascx.cs">
+      <DependentUpon>Ucntrol_IlceTanimla.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_IlceTanimla.ascx.designer.cs">
+      <DependentUpon>Ucntrol_IlceTanimla.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_KanalDurumGrafik.ascx.cs">
+      <DependentUpon>Ucntrol_KanalDurumGrafik.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_KanalDurumGrafik.ascx.designer.cs">
+      <DependentUpon>Ucntrol_KanalDurumGrafik.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_MahalleTanimla.ascx.cs">
+      <DependentUpon>Ucntrol_MahalleTanimla.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_MahalleTanimla.ascx.designer.cs">
+      <DependentUpon>Ucntrol_MahalleTanimla.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_TarihBazliRaporGrafik.ascx.cs">
+      <DependentUpon>Ucntrol_TarihBazliRaporGrafik.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_TarihBazliRaporGrafik.ascx.designer.cs">
+      <DependentUpon>Ucntrol_TarihBazliRaporGrafik.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_UstOlayDurumGrafik.ascx.cs">
+      <DependentUpon>Ucntrol_UstOlayDurumGrafik.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ucntrl\Ucntrol_UstOlayDurumGrafik.ascx.designer.cs">
+      <DependentUpon>Ucntrol_UstOlayDurumGrafik.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UstOlay.aspx.cs">
+      <DependentUpon>UstOlay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UstOlay.aspx.designer.cs">
+      <DependentUpon>UstOlay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WebReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="YeniKullanici.aspx.cs">
+      <DependentUpon>YeniKullanici.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YeniKullanici.aspx.designer.cs">
+      <DependentUpon>YeniKullanici.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Yetki.aspx.cs">
+      <DependentUpon>Yetki.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Yetki.aspx.designer.cs">
+      <DependentUpon>Yetki.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="img\placeholders\avatars\" />
+    <Folder Include="img\placeholders\backgrounds\" />
+    <Folder Include="img\placeholders\photos\headers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\a.pubxml" />
+    <None Include="Web References\WebReference\Service1.wsdl" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://192.168.1.150:83/Service1.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WebReference\</RelPath>
+      <UpdateFromURL>http://192.168.1.150:83/Service1.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>EgmYKS_WebReference_Service1</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelperDataLib\HelperDataLib.csproj">
+      <Project>{a4d6af00-8559-4aab-8b02-84f85aeb6c2b}</Project>
+      <Name>HelperDataLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4940</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4940/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

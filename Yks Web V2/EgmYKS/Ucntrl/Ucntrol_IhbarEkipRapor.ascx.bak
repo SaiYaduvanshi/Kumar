@@ -1,0 +1,560 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Ucntrol_IhbarEkipRapor.ascx.cs" Inherits="EgmYKS.Ucntrl.Ucntrol_IhbarEkipRapor" %>
+ <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxRoundPanel" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPanel" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxMenu" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridView" tagprefix="dx" %>
+  <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridView.Export" tagprefix="dx" %>
+  <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPopupControl" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxTabControl" tagprefix="dx1" %>
+   <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxClasses" tagprefix="dx" %>
+  <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxTabControl" TagPrefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxMenu" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
+    <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxClasses" tagprefix="dx" %>
+    <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxRoundPanel" tagprefix="dx1" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPanel" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridView" tagprefix="dx" %>  
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxPopupControl" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridLookup" tagprefix="dx" %>
+<script>
+    $(document).ready(function () {
+        $("#raporislemleri>a").addClass("open");
+        $("#raporislemleri>ul").css("display", "block");
+    });
+</script>
+  <style type="text/css">
+      .auto-style1 {
+          width: 33%;
+      }
+      .auto-style2 {
+        width: 33%;
+    }
+    
+    .auto-style4 {
+        width: 50%;
+    }
+   
+    .auto-style7 {
+        width: 30%;
+    }
+     .auto-style8 {
+        width: 40%;
+    }
+  </style>
+  <h3>
+                                <i class="fa fa-file-text-o"></i> İhbar Ekip Raporu
+                            </h3>
+<dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" HeaderText="Rapor Filitresi" ShowCollapseButton="true" Theme="MetropolisBlue" Width="100%">
+    <ContentPaddings Padding="1px" />
+    <PanelCollection>
+<dx:PanelContent runat="server">
+    <table style="width:100%;">
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="Label1" runat="server" Text="Başlama Tarihi"></asp:Label>
+                <dx:ASPxDateEdit ID="ASPxDateEdit1" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxDateEdit>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label2" runat="server" Text="Bitiş Tarihi"></asp:Label>
+                <dx:ASPxDateEdit ID="ASPxDateEdit2" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxDateEdit>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label3" runat="server" Text="İhbarcı Telefonu"></asp:Label>
+                <dx:ASPxTextBox ID="_ihbarcitel" runat="server" Theme="Moderno" Width="100%">
+                           <MaskSettings IncludeLiterals="None" Mask="(000) 000-0000" ErrorText="Eksik rakam."/>
+                        <ClientSideEvents  Validation="function(s,e)  { if (e.value == null || e.value =='') e.isValid = true; }" />
+                </dx:ASPxTextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="Label4" runat="server" Text="Başlama Saati"></asp:Label>
+                <dx:ASPxTimeEdit ID="ASPxTimeEdit1" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxTimeEdit>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label5" runat="server" Text="Bitiş Saati"></asp:Label>
+                <dx:ASPxTimeEdit ID="ASPxTimeEdit2" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxTimeEdit>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label6" runat="server" Text="İhbarcı Adı"></asp:Label>
+                <dx:ASPxTextBox ID="_ihbarciadi" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxTextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="Label7" runat="server" Text="İlçe"></asp:Label>
+                <dx:ASPxComboBox ID="_ilce" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxComboBox>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label8" runat="server" Text="Mahalle"></asp:Label>
+                <dx:ASPxTextBox ID="_mahalle" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxTextBox>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label9" runat="server" Text="Cadde-Sokak"></asp:Label>
+                <dx:ASPxTextBox ID="_cadde" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxTextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="Label10" runat="server" Text="Plaka"></asp:Label>
+                <dx:ASPxTextBox ID="_plaka" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxTextBox>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label11" runat="server" Text="İhbar Türü"></asp:Label>
+                <dx:ASPxComboBox ID="_ustolay" runat="server" Theme="Moderno" Width="100%" EnableIncrementalFiltering="True" IncrementalFilteringMode="StartsWith">
+                </dx:ASPxComboBox>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label12" runat="server" Text="Alt Olay"></asp:Label>
+                <dx:ASPxComboBox ID="_altolay" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxComboBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="Label31" runat="server" Text="Kanal"></asp:Label>
+                 <dx:ASPxGridLookup ID="ASPxGridLookup1" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="KNL_KODU" SelectionMode="Multiple" TextFormatString="{0}" Theme="Moderno" Width="100%" IncrementalFilteringMode="StartsWith" MultiTextSeparator=",">
+                                                <GridViewProperties>
+                                                    <SettingsBehavior AllowFocusedRow="True" allowselectbyrowclick="True" />
+                                                    <SettingsPager Mode="ShowAllRecords">
+                                                    </SettingsPager>
+                                                    <Settings ColumnMinWidth="50" ShowFilterRow="True" VerticalScrollBarMode="Auto" />
+                                                </GridViewProperties>
+                                                <Columns>
+                                                    <dx:GridViewDataTextColumn Caption="Kanal Kodu" FieldName="KNL_KODU" MinWidth="100" VisibleIndex="1" Width="100px">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn Caption="Kanal Adı                                 " FieldName="KN_ADI" MinWidth="150" VisibleIndex="2" Width="150px">
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewCommandColumn Caption="Seç" ShowSelectCheckbox="True" VisibleIndex="0">
+                                                    </dx:GridViewCommandColumn>
+                                                </Columns>
+                                            </dx:ASPxGridLookup>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label32" runat="server" Text="Log"></asp:Label>
+                <dx:ASPxGridLookup ID="ASPxGridLookup2" runat="server" AutoGenerateColumns="False" EnableTheming="True" IncrementalFilteringMode="StartsWith" KeyFieldName="ID" MultiTextSeparator="," SelectionMode="Multiple" TextFormatString="{0}" Theme="Moderno" Width="100%">
+                    <GridViewProperties>
+                        <SettingsBehavior AllowFocusedRow="True" AllowSelectByRowClick="True" />
+                        <SettingsPager Mode="ShowAllRecords">
+                        </SettingsPager>
+                        <Settings ColumnMinWidth="150" ShowFilterRow="True" VerticalScrollBarMode="Auto" />
+                    </GridViewProperties>
+                    <Columns>
+                        <dx:GridViewDataTextColumn Caption="Kanal Kodu" FieldName="ID" MinWidth="100" ShowInCustomizationForm="True" VisibleIndex="1" Width="100px">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataTextColumn Caption="Kanal Adı                                 " FieldName="LOGMESAJ" MinWidth="250" ShowInCustomizationForm="True" VisibleIndex="2" Width="250px">
+                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewCommandColumn Caption="Seç" ShowInCustomizationForm="True" ShowSelectCheckbox="True" VisibleIndex="0">
+                        </dx:GridViewCommandColumn>
+                    </Columns>
+                </dx:ASPxGridLookup>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label33" runat="server" Text="Durum"></asp:Label>
+                <dx:ASPxComboBox ID="durum" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxComboBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style1">
+                <asp:Label ID="Label34" runat="server" Text="Diğer"></asp:Label>
+                <dx:ASPxComboBox ID="diger" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxComboBox>
+            </td>
+              <td class="auto-style1">
+                <asp:Label ID="Label35" runat="server" Text="Kullanıcı"></asp:Label>
+                <dx:ASPxComboBox ID="cbKullanici" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxComboBox>
+            </td>
+            <td class="auto-style1">&nbsp;</td>
+        </tr>
+    </table>
+        </dx:PanelContent>
+</PanelCollection>
+</dx:ASPxRoundPanel>
+<dx:ASPxMenu ID="ASPxMenu1" runat="server" EnableTheming="True" ItemAutoWidth="False" Theme="Moderno" Width="100%" AutoPostBack="True" OnItemClick="ASPxMenu1_ItemClick">
+    <Items>
+        <dx:MenuItem Text="Yükle" Name="YUKLE">
+            <Image Url="~/images/Refresh_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Text="Excel'e Aktar" Name="EXCEL" Enabled="False">
+            <Image Url="~/images/ExportToXLSX_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Text="Satır" Name="SATIR">
+            <Items>
+                <dx:MenuItem Name="SATIR" Text="10">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="15">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="20">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="25">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="50">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="100">
+                </dx:MenuItem>
+            </Items>
+            <Image Url="~/images/ListNumbers_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Name="TEMIZLE" Text="Temizle">
+            <Image Url="~/images/DeleteList2_16x16.png">
+            </Image>
+        </dx:MenuItem>
+    </Items>
+</dx:ASPxMenu>
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+        <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" EnableTheming="True" KeyFieldName="I_ID" OnCustomColumnDisplayText="ASPxGridView1_CustomColumnDisplayText" Theme="MetropolisBlue" Width="100%">
+            <Columns>
+             <%--   <dx:GridViewDataTextColumn Caption="İhbarcı Telefonu" FieldName="I_TELEFON" VisibleIndex="11" Width="7%">
+                </dx:GridViewDataTextColumn>--%>
+          <%--      <dx:GridViewDataTextColumn Caption="Durum" FieldName="I_DURUM" VisibleIndex="0" Width="5%">
+                </dx:GridViewDataTextColumn>--%>
+   <%--             <dx:GridViewDataTextColumn Caption="İhbarcı Adı" FieldName="I_ISIMSOYISIM" VisibleIndex="12" Width="7%">
+                </dx:GridViewDataTextColumn>
+                  <dx:GridViewDataTextColumn Caption="Plaka" FieldName="I_PLAKA" VisibleIndex="13" Width="7%">
+                </dx:GridViewDataTextColumn>--%>
+                <dx:GridViewDataTextColumn Caption="Cadde Sokak" FieldName="I_CADDE" VisibleIndex="14">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn Caption="Mahalle" FieldName="MAHADI" VisibleIndex="15" >
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn Caption="İlçe" FieldName="ILCEAD" VisibleIndex="16">
+                </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataDateColumn Caption="İhbar Geliş Zamanı" FieldName="GELISTARIH" VisibleIndex="16" SortOrder="Descending"  GroupIndex="0">
+                  
+                    </dx:GridViewDataDateColumn>
+                    <dx:GridViewDataTextColumn Caption="İhbar Başlama Zamanı" FieldName="KABULTARIH" VisibleIndex="16" >
+                     <PropertiesTextEdit DisplayFormatString="dd.MM.yyyy HH:mm">
+                    </PropertiesTextEdit>
+                          </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn Caption="İhbar Ulaşma Zamanı" FieldName="SONTARIH" VisibleIndex="16" >
+                       <PropertiesTextEdit DisplayFormatString="dd.MM.yyyy HH:mm">
+                    </PropertiesTextEdit>
+                    </dx:GridViewDataTextColumn>
+                    <dx:GridViewDataTextColumn Caption="Süre(Saat)" FieldName="SURE" VisibleIndex="16">
+                </dx:GridViewDataTextColumn>
+
+                       <dx:GridViewDataTextColumn Caption="Log" FieldName="LOGMESAJ" VisibleIndex="17" Width="7%">
+                </dx:GridViewDataTextColumn>
+                    <%--   <dx:GridViewDataTextColumn Caption="Kanal" FieldName="KN_ADI" VisibleIndex="18" Width="7%">
+                </dx:GridViewDataTextColumn>--%>
+           <%--     <dx:GridViewDataTextColumn Caption="Kullanıcı" FieldName="I_KULLANICI" VisibleIndex="19" Width="5%">
+                </dx:GridViewDataTextColumn>--%>
+                <dx:GridViewDataTextColumn Caption="Üst Olay Adı" FieldName="I_OLAYADI" VisibleIndex="4">
+                </dx:GridViewDataTextColumn>
+         
+                <dx:GridViewDataTextColumn Caption="Alt Olay Kodu" FieldName="I_ALTOLAYADI" VisibleIndex="5">
+                </dx:GridViewDataTextColumn>
+                             <dx:GridViewDataTextColumn Caption="İhbar Tür" FieldName="I_IHBARTUR" VisibleIndex="6">
+                </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn Caption="Seç" VisibleIndex="21">
+                    <DataItemTemplate>
+                        <dx:ASPxButton ID="ASPxButton1" runat="server" CommandArgument='<%#Eval("I_ID") %>' OnCommand="ASPxButton1_Command" RenderMode="Link">
+                            <Image Url="~/images/Show_16x16.png">
+                            </Image>
+                        </dx:ASPxButton>
+                    </DataItemTemplate>
+                </dx:GridViewDataTextColumn>
+            <%--    <dx:GridViewDataDateColumn Caption="Tarih" FieldName="I_TARIH" VisibleIndex="1" Width="7%">
+                </dx:GridViewDataDateColumn>--%>
+          <%--       <dx:GridViewDataTextColumn Caption="Diğer" FieldName="DIGER" VisibleIndex="3" Width="7%">
+                </dx:GridViewDataTextColumn>--%>
+        <%--        <dx:GridViewDataTextColumn Caption="Saat" FieldName="SAAT" VisibleIndex="2" Width="3%">
+                    <PropertiesTextEdit DisplayFormatString="HH:mm">
+                    </PropertiesTextEdit>
+                    <Settings FilterMode="DisplayText" />
+                </dx:GridViewDataTextColumn>--%>
+     <%--           <dx:GridViewDataTextColumn Caption="Kaynak" FieldName="I_KAYNAK" VisibleIndex="20" Width="5%">
+                </dx:GridViewDataTextColumn>--%>
+            </Columns>
+            <SettingsBehavior AllowFocusedRow="True" />
+            <Settings ShowFilterRow="True" ShowGroupPanel="True" />
+            <SettingsText EmptyDataRow="Veri yok..." />
+             <GroupSummary>
+  
+            <dx:ASPxSummaryItem FieldName="I_ALTOLAYADI" Tag="Olay Sayısı" SummaryType="Count" DisplayFormat="İhbar Sayısı:{0}" />
+        </GroupSummary>
+        </dx:ASPxGridView>
+        <dx:ASPxPopupControl ID="ASPxPopupControl1" runat="server" CloseAction="CloseButton" HeaderText="İhbar Detayı" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" Theme="MetropolisBlue" Width="1200px" Modal="True">
+        <ContentStyle>
+            <Paddings Padding="1px" />
+        </ContentStyle>
+        <ContentCollection>
+            <dx:PopupControlContentControl runat="server">
+                <table style="width:100%;">
+                    <tr>
+                        <td valign="top" class="auto-style7" rowspan="2">
+                            <dx1:ASPxRoundPanel ID="ASPxRoundPanel4" runat="server" ShowCollapseButton="True" ShowHeader="False" Theme="MetropolisBlue" Width="100%">
+                                <ContentPaddings Padding="2px" />
+                                <PanelCollection>
+                                    <dx:PanelContent runat="server">
+                                        <table style="width:100%;">
+                                            <tr>
+                                                <td class="auto-style4">
+                                                    <asp:Label ID="Label13" runat="server" Text="Arayan No" Font-Bold="True"></asp:Label>
+                                                    <dx:ASPxButtonEdit ID="_telefon" runat="server" ReadOnly="True" Theme="MetropolisBlue" Width="100%">
+                                                        <Buttons>
+                                                            <dx:EditButton Enabled="False" Text=" ">
+                                                            </dx:EditButton>
+                                                        </Buttons>
+                                                    </dx:ASPxButtonEdit>
+                                                </td>
+                                                <td class="auto-style4">
+                                                    <asp:Label ID="Label18" runat="server" Text="İsim" Font-Bold="True"></asp:Label>
+                                                    <dx:ASPxButtonEdit ID="_isim" runat="server" ReadOnly="True" Theme="MetropolisBlue" Width="100%">
+                                                        <Buttons>
+                                                            <dx:EditButton Enabled="False" Text=" ">
+                                                            </dx:EditButton>
+                                                        </Buttons>
+                                                    </dx:ASPxButtonEdit>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:Label ID="Label14" runat="server" Text="İlçe" Font-Bold="True"></asp:Label>
+                                        <dx:ASPxComboBox ID="ASPxComboBox1" runat="server" DropDownStyle="DropDown" Theme="MetropolisBlue" Width="100%">
+                                        </dx:ASPxComboBox>
+                                        <asp:Label ID="Label15" runat="server" Text="İlgilencek Kanal" Font-Bold="True"></asp:Label>
+                                        <dx:ASPxComboBox ID="_kanal" runat="server" Theme="MetropolisBlue" Width="100%">
+                                        </dx:ASPxComboBox>
+                                        <table style="width:100%;">
+                                            <tr>
+                                                <td class="auto-style4">
+                                                    <asp:Label ID="Label16" runat="server" Text="Mahalle" Font-Bold="True"></asp:Label>
+                                                    <dx:ASPxComboBox ID="ASPxComboBox2" runat="server" DropDownStyle="DropDown" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                                    </dx:ASPxComboBox>
+                                                </td>
+                                                <td class="auto-style4">
+                                                    <asp:Label ID="Label17" runat="server" Text="Blv.Sk.Cad" Font-Bold="True"></asp:Label>
+                                                    <dx:ASPxComboBox ID="ASPxComboBox3" runat="server" DropDownStyle="DropDown" Theme="MetropolisBlue" Width="100%">
+                                                    </dx:ASPxComboBox>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:Label ID="Label19" runat="server" Text="Sit-Bina-Plaka" Font-Bold="True"></asp:Label>
+                                        <table style="width:100%;">
+                                            <tr>
+                                                <td class="auto-style2">
+                                                    <dx:ASPxTextBox ID="_site" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                                    </dx:ASPxTextBox>
+                                                </td>
+                                                <td class="auto-style2">
+                                                    <dx:ASPxTextBox ID="_bina" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                                    </dx:ASPxTextBox>
+                                                </td>
+                                                <td class="auto-style2">
+                                                    <dx:ASPxTextBox ID="ASPxTextBox1" runat="server" Theme="MetropolisBlue" Width="100%">
+                                                    </dx:ASPxTextBox>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:Label ID="Label20" runat="server" Text="Adres" Font-Bold="True"></asp:Label>
+                                        <dx:ASPxMemo ID="_adres" runat="server" Height="30px" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                        </dx:ASPxMemo>
+                                        <asp:Label ID="Label21" runat="server" Text="Lokasyon" Font-Bold="True"></asp:Label>
+                                        <table style="width:100%;">
+                                            <tr>
+                                                <td class="auto-style4">
+                                                    <dx:ASPxTextBox ID="_lat" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                                         <MaskSettings IncludeLiterals="None" Mask="41.00000000" ErrorText="Eksik rakam." />
+                        <ClientSideEvents  Validation="function(s,e)  { if (e.value == null || e.value =='') e.isValid = true; }"/>
+                                                    </dx:ASPxTextBox>
+                                                </td>
+                                                <td class="auto-style4">
+                                                    <dx:ASPxTextBox ID="_long" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                                         <MaskSettings IncludeLiterals="None" Mask="41.00000000" ErrorText="Eksik rakam." />
+                        <ClientSideEvents  Validation="function(s,e)  { if (e.value == null || e.value =='') e.isValid = true; }"/>
+                                                    </dx:ASPxTextBox>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:Label ID="Label22" runat="server" Text="İhbar Bilgisi" Font-Bold="True"></asp:Label>
+                                        <dx:ASPxMemo ID="_ihbar" runat="server" Height="30px" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                        </dx:ASPxMemo>
+                                        <table style="width:100%;">
+                                            <tr>
+                                                <td class="auto-style4">
+                                                    <asp:Label ID="Label23" runat="server" Text="Alt Olay Kodu" Font-Bold="True"></asp:Label>
+                                                    <dx:ASPxButtonEdit ID="ASPxButtonEdit1" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                                        <Buttons>
+                                                            <dx:EditButton Visible="False">
+                                                            </dx:EditButton>
+                                                        </Buttons>
+                                                    </dx:ASPxButtonEdit>
+                                                </td>
+                                                <td class="auto-style4">
+                                                    <asp:Label ID="Label24" runat="server" Text="Üst Olay Kodu" Font-Bold="True"></asp:Label>
+                                                    <dx:ASPxButtonEdit ID="ASPxButtonEdit2" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                                        <Buttons>
+                                                            <dx:EditButton Visible="False">
+                                                            </dx:EditButton>
+                                                        </Buttons>
+                                                    </dx:ASPxButtonEdit>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:Label ID="Label25" runat="server" Text="Operatör Notu" Font-Bold="True"></asp:Label>
+                                        <dx:ASPxMemo ID="_optnot" runat="server" Height="30px" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                        </dx:ASPxMemo>
+                                          <table style="width:100%;">
+                                    <tr>
+                                        <td class="auto-style3" align="center">
+                                            <dx:ASPxCheckBox ID="ASPxCheckBox1" runat="server" Text="Öncelikli" Theme="Aqua">
+                                            </dx:ASPxCheckBox>
+                                        </td>
+                                        <td class="auto-style3" align="center">
+                                            <dx:ASPxCheckBox ID="ASPxCheckBox2" runat="server" Text="İtfaiye" Theme="RedWine">
+                                            </dx:ASPxCheckBox>
+                                        </td>
+                                        <td class="auto-style3" align="center">
+                                            <dx:ASPxCheckBox ID="ASPxCheckBox3" runat="server" Text="Ambulans" Theme="PlasticBlue">
+                                            </dx:ASPxCheckBox>
+                                        </td>
+                                    </tr>
+                                </table>
+                                        <asp:Label ID="Label26" runat="server" Text="Diğer Bilgiler" Font-Bold="True"></asp:Label>
+                                        <dx:ASPxTextBox ID="_digerbilgi" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                        </dx:ASPxTextBox>
+                                        <table style="width:100%;">
+                                            <tr>
+                                                <td class="auto-style4">
+                                                    <asp:Label ID="Label27" runat="server" Text="Cinsiyet" Font-Bold="True"></asp:Label>
+                                                    <dx:ASPxRadioButtonList ID="_cinsiyet" runat="server" EnableTheming="True" RepeatDirection="Horizontal" SelectedIndex="0" Theme="MetropolisBlue" Width="100%">
+                                                        <Items>
+                                                            <dx:ListEditItem Selected="True" Text="Erkek" Value="Erkek" />
+                                                            <dx:ListEditItem Text="Kadın" Value="Kadın" />
+                                                        </Items>
+                                                        <Border BorderStyle="None" />
+                                                    </dx:ASPxRadioButtonList>
+                                                </td>
+                                                <td class="auto-style4">
+                                                    <asp:Label ID="Label28" runat="server" Text="Yaş"></asp:Label>
+                                                    <dx:ASPxSpinEdit ID="_yas" runat="server" Number="0" Theme="MetropolisBlue" Width="100%">
+                                                    </dx:ASPxSpinEdit>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <asp:Label ID="Label29" runat="server" Text="Email" Font-Bold="True"></asp:Label>
+                                        <dx:ASPxTextBox ID="_mail" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                            <ValidationSettings SetFocusOnError="True" ValidationGroup="EditForm" Display="Dynamic" ErrorTextPosition="Bottom">
+                                                        <RequiredField IsRequired="True" ErrorText="boş geçilemez." />
+                                                        <RegularExpression ErrorText="geçersiz mail formatı" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+                                                    </ValidationSettings>
+                                        </dx:ASPxTextBox>
+                                        <asp:Label ID="Label30" runat="server" Text="Tarih" Font-Bold="True"></asp:Label>
+                                        <dx:ASPxTextBox ID="_mail0" runat="server" Theme="MetropolisBlue" Width="100%" ReadOnly="True">
+                                        </dx:ASPxTextBox>
+                                    </dx:PanelContent>
+                                </PanelCollection>
+                            </dx1:ASPxRoundPanel>
+                        </td>
+                        <td valign="top" rowspan="2">
+                            <table style="width: 100%; height: 100%;">
+                                <tr>
+                                    <td class="auto-style8">
+                                        <dx:ASPxGridView ID="ASPxGridView3" runat="server" AutoGenerateColumns="False" EnableTheming="True" Theme="MetropolisBlue" Width="100%">
+                                            <Columns>
+                                                <dx:GridViewDataTextColumn Caption="Kanal" ShowInCustomizationForm="True" VisibleIndex="0" Width="30%" FieldName="L_KANAL">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Okuma Zamanı" ShowInCustomizationForm="True" VisibleIndex="1" Width="20%" FieldName="L_TARIHSAAT">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Kullanıcı" ShowInCustomizationForm="True" VisibleIndex="2" Width="20%" FieldName="L_SICILNO">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="İşlem" ShowInCustomizationForm="True" VisibleIndex="3" Width="30%" FieldName="LOGMESAJ">
+                                                </dx:GridViewDataTextColumn>
+                                            </Columns>
+                                            <SettingsPager NumericButtonCount="20" PageSize="20" Mode="ShowAllRecords">
+                                            </SettingsPager>
+                                            <Settings VerticalScrollableHeight="290" VerticalScrollBarMode="Visible" />
+                                        </dx:ASPxGridView>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <dx:ASPxGridView ID="ASPxGridView4" runat="server" AutoGenerateColumns="False" EnableTheming="True" Theme="MetropolisBlue" Width="100%">
+                                            <Columns>
+                                                <dx:GridViewDataTextColumn Caption="Ekip" ShowInCustomizationForm="True" VisibleIndex="0" Width="15%" FieldName="EG_EKKODU">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Kanal" ShowInCustomizationForm="True" VisibleIndex="1" Width="15%" FieldName="KN_ADI">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Yon.Zamanı" ShowInCustomizationForm="True" VisibleIndex="2" Width="20%" FieldName="EG_TARIH">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Ulasma Zamanı" ShowInCustomizationForm="True" VisibleIndex="3" Width="20%" FieldName="EG_ULASMATARIH">
+                                                </dx:GridViewDataTextColumn>
+                                                <dx:GridViewDataTextColumn Caption="Sonlan.Zamanı" ShowInCustomizationForm="True" VisibleIndex="4" Width="20%" FieldName="EG_SONTARIH">
+                                                </dx:GridViewDataTextColumn>
+                                               
+                                            </Columns>
+                                            <SettingsPager NumericButtonCount="20" PageSize="20" Mode="ShowAllRecords">
+                                            </SettingsPager>
+                                            <Settings VerticalScrollBarMode="Visible" />
+                                        </dx:ASPxGridView>
+                                     
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td class="auto-style7" valign="top">
+                            <dx1:ASPxRoundPanel ID="ASPxRoundPanel5" runat="server" HeaderText="İhbar Notları" Height="270px" ShowCollapseButton="True" Theme="Office2010Blue" Width="100%">
+                                <ContentPaddings Padding="0px" />
+                                <PanelCollection>
+                                    <dx:PanelContent runat="server">
+                                      
+                                        <asp:Panel ID="Panel1" runat="server" Height="270px" ScrollBars="Vertical" Width="100%">
+                                            <asp:Repeater ID="Repeater1" runat="server">
+                                                <ItemTemplate>
+                                                    <%#Eval("IN_TARIHSAAT") +" "+Eval("IN_KULLANICI") +" "+Eval("IN_OLAYKODU")%>
+                                                    <br />
+                                                    <%#Eval("IN_MESAJ")%>
+                                                    <br />
+                                                    <br />
+                                                    ----------------------------------------------------------------
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </asp:Panel>
+                                    </dx:PanelContent>
+                                </PanelCollection>
+                            </dx1:ASPxRoundPanel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style7" valign="top">
+                           
+                            <dx:ASPxGridView ID="ASPxGridView8" runat="server" AutoGenerateColumns="False" EnableTheming="True" Theme="MetropolisBlue" Width="100%">
+                                <Columns>
+                                    <dx:GridViewDataTextColumn Caption="Kanal" FieldName="IK_KANAL" ShowInCustomizationForm="True" VisibleIndex="0" Width="40%">
+                                    </dx:GridViewDataTextColumn>
+                                
+                                    <dx:GridViewDataTextColumn Caption="Tarih" FieldName="IK_TARIH" ShowInCustomizationForm="True" VisibleIndex="2" Width="40%">
+                                    </dx:GridViewDataTextColumn>
+                                </Columns>
+                                <SettingsPager Mode="ShowAllRecords" NumericButtonCount="20" PageSize="20">
+                                </SettingsPager>
+                                <Settings VerticalScrollBarMode="Visible" />
+                            </dx:ASPxGridView>
+                        </td>
+                    </tr>
+                </table>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+        </dx:ASPxPopupControl>
+    </ContentTemplate>
+</asp:UpdatePanel>
+
+<dx:ASPxGridViewExporter ID="ASPxGridViewExporter1" runat="server">
+</dx:ASPxGridViewExporter>
+
+

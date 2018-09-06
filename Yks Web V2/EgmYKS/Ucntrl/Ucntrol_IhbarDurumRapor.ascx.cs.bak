@@ -1,0 +1,400 @@
+﻿using DevExpress.Web.ASPxEditors;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+
+namespace EgmYKS.Ucntrl
+{
+    public partial class Ucntrol_IhbarDurumRapor : System.Web.UI.UserControl
+    {
+        string datemode = ConfigurationManager.AppSettings["Datemode"].ToString();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                ASPxDateEdit1.Date = DateTime.Now;
+                ASPxDateEdit2.Date = DateTime.Now;
+                ASPxTimeEdit1.Text = DateTime.Now.ToString("00:00");
+                ASPxTimeEdit2.Text = DateTime.Now.ToString("23:59");
+                Ilceler();
+                YETKIKONTROL();
+                OLAYKODLARI();
+                durum.Items.Add("(Tümü)", "");
+                durum.Items.Add("Kayıt");
+                durum.Items.Add("İletilen");
+                durum.Items.Add("Tümü İletilen");
+                durum.Items.Add("A.Kapattı");
+                durum.Items.Add("B.Talebi");
+                durum.Items.Add("G.Arama");
+                durum.Items.Add("EksikIhbar");
+                diger.Items.Insert(0, new ListEditItem("İtfaiye", "1"));
+                diger.Items.Insert(0, new ListEditItem("Ambulans", "2"));
+                diger.Items.Insert(0, new ListEditItem("Öncelikli", "True"));
+                diger.Items.Insert(0, new ListEditItem("(Tümü)", ""));
+                diger.SelectedIndex = 0;
+            }
+            KANAL();
+            LOG();
+            KULLANICI();
+            CATCH_YUKLE();
+        }
+        void KANAL()
+        {
+            try
+            {
+                ASPxGridLookup1.DataSource = HelperDataLib.Select.S_KANAL();
+                ASPxGridLookup1.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void KULLANICI()
+        {
+            try
+            {
+                cbKullanici.DataSource = HelperDataLib.Select.S_KULLANICILARI_YUKLE();
+                cbKullanici.TextField = "USR_SICILNO";
+                cbKullanici.ValueField = "USR_SICILNO";
+                cbKullanici.DataBind();
+                cbKullanici.Items.Insert(0, new ListEditItem("(Tümü)", ""));
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void LOG()
+        {
+            try
+            {
+                ASPxGridLookup2.DataSource = HelperDataLib.Select.S_GETLOG("0");
+                ASPxGridLookup2.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void OLAYKODLARI()
+        {
+            try
+            {
+                _altolay.DataSource = HelperDataLib.Select.S_ALTOLAY_YUKLE();
+                _altolay.TextField = "A_IHBAR";
+                _altolay.ValueField = "A_ID";
+                _altolay.DataBind();
+                _altolay.Items.Insert(0, new ListEditItem("(Tümü)", ""));
+
+                _ustolay.DataSource = HelperDataLib.Select.S_IHBARTUR_LISTESI();
+                _ustolay.TextField = "I_IHBARTUR";
+                _ustolay.DataBind();
+                _ustolay.Items.Insert(0, new ListEditItem("(Tümü)", ""));
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        void YETKIKONTROL()
+        {
+
+            try
+            {
+                bool OKU = false; bool YAZ = false; bool SIL = false; string USERS = ""; bool EKSTRA = false;
+                HelperDataLib.Select.S_YETKI_GETVALUES("202", ref OKU, ref YAZ, ref SIL, ref EKSTRA, ref USERS);
+                if (YAZ == true)
+                {
+
+                    DevExpress.Web.ASPxMenu.MenuItem EXCEL = this.ASPxMenu1.Items.FindByName("EXCEL");
+                    EXCEL.Enabled = true;
+
+                }
+                if (OKU == false)
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void Ilceler()
+        {
+            try
+            {
+                _ilce.DataSource = HelperDataLib.Select.S_ILCE("41");
+                _ilce.TextField = "AD";
+                _ilce.ValueField = "ILCEID";
+                _ilce.DataBind();
+                _ilce.Items.Insert(0, new DevExpress.Web.ASPxEditors.ListEditItem("(Tümü)", ""));
+                _ilce.SelectedIndex = 0;
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+
+        protected void ASPxGridView1_CustomColumnDisplayText(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewColumnDisplayTextEventArgs e)
+        {
+
+        }
+
+        void CATCH_YUKLE()
+        {
+            try
+            {
+                string Tarih1 = ASPxDateEdit1.Date.ToString(datemode) + " " + ASPxTimeEdit1.DateTime.ToString("HH:mm:ss");
+                string Tarih2 = ASPxDateEdit2.Date.ToString(datemode) + " " + ASPxTimeEdit2.DateTime.ToString("HH:mm:ss");
+                if (Session["SS_Islem_SatirSayisi"] == null)
+                {
+                    Session["SS_Islem_SatirSayisi"] = 10;
+                }
+                string kanal = "";
+                for (int i = 0; i < ASPxGridLookup1.GridView.VisibleRowCount; i++)
+                {
+                    if (ASPxGridLookup1.GridView.Selection.IsRowSelected(i) == true)
+                    {
+                        if (kanal == "")
+                        {
+                            kanal = "'" + ASPxGridLookup1.GridView.GetRowValues(i, "KNL_KODU") + "'";
+                        }
+                        else
+                        {
+                            kanal += ",'" + ASPxGridLookup1.GridView.GetRowValues(i, "KNL_KODU") + "'";
+                        }
+                    }
+                }
+                string log = "";
+                for (int i = 0; i < ASPxGridLookup2.GridView.VisibleRowCount; i++)
+                {
+                    if (ASPxGridLookup2.GridView.Selection.IsRowSelected(i) == true)
+                    {
+                        if (log == "")
+                        {
+                            log = "'" + ASPxGridLookup2.GridView.GetRowValues(i, "ID") + "'";
+                        }
+                        else
+                        {
+                            log += ",'" + ASPxGridLookup2.GridView.GetRowValues(i, "ID") + "'";
+                        }
+                    }
+                }
+                ASPxGridView1.DataSource = HelperDataLib.Select.S_GETIHBAR_DURUM_RAPOR(Tarih1, Tarih2, _ihbarcitel.Text, _ihbarciadi.Text, _ilce.SelectedItem.Value.ToString(), _mahalle.Text, _cadde.Text, _plaka.Text, _ustolay.SelectedItem.Value.ToString(), _altolay.SelectedItem.Value.ToString(), kanal, log, durum.Text, diger.SelectedItem.Value.ToString(), cbKullanici.SelectedItem.Value.ToString());
+                ASPxGridView1.DataBind();
+                ASPxMenu1.Items[2].Text = "Satır Sayısı" + "(" + Session["SS_Islem_SatirSayisi"].ToString() + ")";
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        protected void ASPxMenu1_ItemClick(object source, DevExpress.Web.ASPxMenu.MenuItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.Name == "YUKLE")
+                {
+
+                    CATCH_YUKLE();
+                }
+                if (e.Item.Name == "SATIR")
+                {
+
+                    try
+                    {
+                        int satir = Convert.ToInt32(e.Item.Text);
+                        Session["SS_Islem_SatirSayisi"] = e.Item.Text;
+
+                    }
+                    catch (Exception)
+                    {
+
+                        Session["SS_Islem_SatirSayisi"] = 10;
+                    }
+                    ASPxGridView1.SettingsPager.PageSize = Convert.ToInt32(Session["SS_Islem_SatirSayisi"]);
+                    ASPxMenu1.Items[2].Text = "Satır Sayısı" + "(" + Session["SS_Islem_SatirSayisi"].ToString() + ")";
+                }
+                if (e.Item.Name == "EXCEL")
+                {
+                    if (ASPxGridView1.VisibleRowCount != 0)
+                    {
+                        ASPxGridViewExporter1.GridViewID = "ASPxGridView1";
+                        ASPxGridViewExporter1.FileName = "Raporları" + "_" + DateTime.Now;
+                        ASPxGridViewExporter1.WriteXlsxToResponse();
+                    }
+                }
+                if (e.Item.Name == "TEMIZLE")
+                {
+                    _altolay.SelectedIndex = 0;
+                    _cadde.Text = "";
+                    _ihbarciadi.Text = "";
+                    _ihbarcitel.Text = "";
+                    _ilce.Text = "";
+                    _mahalle.Text = "";
+                    cbKullanici.SelectedIndex = 0;
+                    _plaka.Text = "";
+                    _ustolay.SelectedIndex = 0;
+                    durum.Text = "";
+                    diger.Text = "";
+                    ASPxGridLookup1.Text = "";
+                    ASPxGridLookup2.Text = "";
+                    ASPxDateEdit1.Date = DateTime.Now;
+                    ASPxDateEdit2.Date = DateTime.Now;
+                    ASPxTimeEdit1.Text = DateTime.Now.ToString("00:00");
+                    ASPxTimeEdit2.Text = DateTime.Now.ToString("23:59");
+                }
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        protected void ASPxButton1_Command(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string doc = e.CommandArgument.ToString();
+                DETAY(doc);
+                ASPxPopupControl1.ShowOnPageLoad = true;
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void LOGYUKLE(string ID)
+        {
+            try
+            {
+                ASPxGridView3.DataSource = HelperDataLib.Select.S_GETIHBAR_LOG(ID);
+                ASPxGridView3.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void MESAJYUKLE(string id)
+        {
+            try
+            {
+                Repeater1.DataSource = HelperDataLib.Select.S_MESAJ(id);
+                Repeater1.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void KAPALI_IHBAR_LISTEYUKLE(string id)
+        {
+            try
+            {
+
+                ASPxGridView8.DataSource = HelperDataLib.Select.S_GETIHBAR_KAPANISLISTE(id);
+                ASPxGridView8.DataBind();
+
+
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void EKIP_YONLENDIRME_LISTE(string ıd)
+        {
+            try
+            {
+                ASPxGridView4.DataSource = HelperDataLib.Select.S_GETIHBAR_EKIPDURUMLISTE(ıd);
+                ASPxGridView4.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void DETAY(string ID)
+        {
+            try
+            {
+                bool durum = false;
+                string I_ISIMSOYISIM = ""; string I_IL = ""; string I_ILCE = ""; string I_KANAL = ""; string I_MAHALLE = ""; string I_CADDE = ""; string I_SITE = ""; string I_BINA = ""; string I_PLAKA = ""; string I_ADRES = ""; string I_LATITUDE = ""; string I_LONGITUDE = ""; string I_IHBARBILGISI = ""; string I_USTOLAYKODU = ""; string I_ALTOLAYKODU = ""; string I_OPERATORNOT = ""; string I_CINSIYET = ""; string I_YAS = ""; string I_MAIL = ""; string I_DIGERBILGI = ""; string I_TARIH = ""; string I_TELEFON = ""; string I_DAIRE = ""; bool I_ONCELIK = false;
+                HelperDataLib.Select.S_IHBAR_GETDETAY(ID, ref I_TELEFON, ref I_ISIMSOYISIM, ref I_IL, ref I_ILCE, ref I_KANAL, ref I_MAHALLE, ref I_CADDE, ref I_SITE, ref I_BINA, ref I_DAIRE, ref I_PLAKA, ref I_ADRES, ref I_LATITUDE, ref I_LONGITUDE, ref I_IHBARBILGISI, ref I_USTOLAYKODU, ref I_ALTOLAYKODU, ref I_OPERATORNOT, ref I_CINSIYET, ref I_YAS, ref I_MAIL, ref I_DIGERBILGI, ref I_TARIH, ref I_ONCELIK);
+                _adres.Text = I_ADRES;
+                ASPxButtonEdit1.Text = I_ALTOLAYKODU;
+                _bina.Text = I_BINA;
+                _cadde.Text = I_CADDE;
+
+                _digerbilgi.Text = I_DIGERBILGI;
+                _ihbar.Text = I_IHBARBILGISI;
+                ASPxComboBox1.Text = I_ILCE;
+                _isim.Text = I_ISIMSOYISIM;
+                _kanal.Text = I_KANAL;
+                _lat.Text = I_LATITUDE;
+                _long.Text = I_LONGITUDE;
+                ASPxComboBox2.Text = I_MAHALLE;
+                _mail.Text = I_MAIL;
+                ASPxComboBox3.Text = I_CADDE;
+                _optnot.Text = I_OPERATORNOT;
+                ASPxTextBox1.Text = I_PLAKA;
+                _site.Text = I_SITE;
+                _telefon.Text = I_TELEFON;
+                ASPxButtonEdit2.Text = I_USTOLAYKODU;
+                _yas.Text = I_YAS;
+                _mail0.Text = Convert.ToDateTime(I_TARIH).ToString("dd.MM.yyyy HH:mm:ss");
+
+                LOGYUKLE(ID);
+                MESAJYUKLE(ID);
+                KAPALI_IHBAR_LISTEYUKLE(ID);
+                EKIP_YONLENDIRME_LISTE(ID);
+                _cinsiyet.SelectedItem.Text = I_CINSIYET;
+                _telefon.Buttons[0].Text = "G:" + HelperDataLib.Select.S_GETTOPLAMCAGRI_GUNLUK(I_TELEFON);
+                _isim.Buttons[0].Text = "T:" + HelperDataLib.Select.S_GETTOPLAMCAGRI(I_TELEFON);
+                ASPxCheckBox1.Checked = I_ONCELIK;
+                DataTable d = HelperDataLib.Select.S_IHBAR_GETDETAY_DETAY2(ID);
+                for (int i = 0; i < d.Rows.Count; i++)
+                {
+                    ASPxCheckBox3.Checked = Convert.ToBoolean(d.Rows[i]["I_AMB"].ToString());
+                    ASPxCheckBox2.Checked = Convert.ToBoolean(d.Rows[i]["I_ITF"].ToString());
+
+                }
+                ASPxCheckBox2.Enabled = false;
+                ASPxCheckBox3.Enabled = false;
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+    }
+}

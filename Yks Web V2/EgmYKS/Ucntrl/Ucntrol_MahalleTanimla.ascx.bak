@@ -1,0 +1,225 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Ucntrol_MahalleTanimla.ascx.cs" Inherits="EgmYKS.Ucntrl.Ucntrol_MahalleTanimla" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxRoundPanel" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxMenu" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView.Export" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxTabControl" TagPrefix="dx1" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxClasses" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxTabControl" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxMenu" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxClasses" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxRoundPanel" TagPrefix="dx1" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPopupControl" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridLookup" TagPrefix="dx" %>
+<script>
+    $(document).ready(function () {
+        $("#menuislemleri>a").addClass("open");
+        $("#menuislemleri>ul").css("display", "block");
+    });
+</script>
+<style type="text/css">
+    .auto-style1 {
+        width: 33%;
+    }
+
+    .auto-style2 {
+        width: 33%;
+    }
+
+    .auto-style4 {
+        width: 50%;
+    }
+
+    .auto-style7 {
+        width: 30%;
+    }
+
+    .auto-style8 {
+        width: 40%;
+    }
+
+    .auto-style9 {
+        width: 15%;
+    }
+
+    .auto-style10 {
+        width: 35%;
+    }
+</style>
+<h3>
+    <i class="fa fa-users"></i>Mahalle Tanımla
+</h3>
+<asp:Panel ID="succes" runat="server" Visible="false" Width="100%">
+    <div class="alert alert-success alert-dismissable" style="width: 100%">
+        <a class="close" data-dismiss="alert" href="#">×</a> <strong>Başarılı!</strong>
+        İşleminiz başarı ile gerçekleşti.
+    </div>
+</asp:Panel>
+<asp:Panel ID="error" runat="server" Visible="false" Width="100%">
+    <div class="alert alert-danger" style="width: 100%">
+        <a class="close" data-dismiss="alert" href="#">×</a> <strong>Hata!</strong> İşleminiz
+    hata aldı!
+    </div>
+</asp:Panel>
+<asp:Panel ID="Warning" runat="server" Visible="false" Width="100%">
+    <div class="alert alert-warning" style="width: 100%">
+        <a class="close" data-dismiss="alert" href="#">×</a> <strong>Uyarı!</strong> (*)
+    alanları yazınız!
+    </div>
+</asp:Panel>
+<dx:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" HeaderText="" ShowCollapseButton="true" Theme="MetropolisBlue" Width="100%">
+    <ContentPaddings Padding="1px" />
+    <PanelCollection>
+        <dx:PanelContent runat="server">
+            <table style="width: 100%;">
+                <tr>
+                    <td class="auto-style1">
+                        <asp:Label ID="Label1" runat="server" Text="İl *"></asp:Label>
+                      <dx:ASPxComboBox ID="_il" runat="server" ClientInstanceName="_il" ValueType="System.String" Theme="Moderno" Width="100%">
+                            <ClientSideEvents SelectedIndexChanged="function(s, e) { OnIlChanged(s); }" />
+                        </dx:ASPxComboBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+                        <asp:Label ID="Label7" runat="server" Text="İlçe *"></asp:Label>
+                                <dx:ASPxComboBox ID="cmbIlce" runat="server" ClientInstanceName="cmbIlce" Theme="Moderno" Width="100%"
+                            OnCallback="cmbIlce_Callback" EnableCallbackMode="true">
+                        </dx:ASPxComboBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+                        <asp:Label ID="Label8" runat="server" Text="Mahalle *"></asp:Label>
+                        <dx:ASPxTextBox ID="txtmahalle" runat="server" Theme="Moderno" Width="100%">
+                        </dx:ASPxTextBox>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="auto-style1">
+                        <asp:Label ID="Label2" runat="server" Text="Latitude *"></asp:Label>
+                        <dx:ASPxTextBox ID="txtlat" runat="server" Theme="Moderno" Width="100%">
+                             <MaskSettings IncludeLiterals="None" Mask="41.00000000" ErrorText="Eksik rakam." />
+                        <ClientSideEvents  Validation="function(s,e)  { if (e.value == null || e.value =='') e.isValid = true; }"/>
+                        </dx:ASPxTextBox>
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="auto-style1">
+                        <asp:Label ID="Label3" runat="server" Text="Longitude *"></asp:Label>
+                        <dx:ASPxTextBox ID="txtlong" runat="server" Theme="Moderno" Width="100%">
+                             <MaskSettings IncludeLiterals="None" Mask="41.00000000" ErrorText="Eksik rakam." />
+                        <ClientSideEvents  Validation="function(s,e)  { if (e.value == null || e.value =='') e.isValid = true; }"/>
+                        </dx:ASPxTextBox>
+                    </td>
+                </tr>
+            </table>
+        </dx:PanelContent>
+    </PanelCollection>
+</dx:ASPxRoundPanel>
+<dx:ASPxMenu ID="ASPxMenu1" runat="server" EnableTheming="True" ItemAutoWidth="False" Theme="Moderno" Width="100%" AutoPostBack="True" OnItemClick="ASPxMenu1_ItemClick">
+    <Items>
+        <dx:MenuItem Text="Kaydet" Name="KAYDET">
+            <Image Url="~/images/Refresh_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Text="Excel'e Aktar" Name="EXCEL" Enabled="False">
+            <Image Url="~/images/ExportToXLSX_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Text="Satır" Name="SATIR">
+            <Items>
+                <dx:MenuItem Name="SATIR" Text="10">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="15">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="20">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="25">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="50">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="100">
+                </dx:MenuItem>
+            </Items>
+            <Image Url="~/images/ListNumbers_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Name="TEMIZLE" Text="Temizle">
+            <Image Url="~/images/DeleteList2_16x16.png">
+            </Image>
+        </dx:MenuItem>
+    </Items>
+</dx:ASPxMenu>
+
+
+<dx:ASPxGridView ID="gridview1" runat="server" AutoGenerateColumns="False"
+    EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="I_MAHID">
+    <Columns>
+
+        <dx:GridViewDataTextColumn Caption="Seç" VisibleIndex="42" Width="2%">
+            <DataItemTemplate>
+                <dataitemtemplate>  
+                        </dataitemtemplate>
+                <dx:ASPxButton ID="btnSec" runat="server" CommandArgument='<%#Eval("I_MAHID") %>' OnCommand="btnSec_Command" RenderMode="Link">
+                    <Image Url="~/images/Show_16x16.png">
+                    </Image>
+                </dx:ASPxButton>
+            </DataItemTemplate>
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Sil" VisibleIndex="43" Width="2%">
+            <DataItemTemplate>
+                <dx:ASPxButton ID="btnSil" runat="server" OnCommand="btnSil_Command" CommandArgument="<%# Bind('I_MAHID') %>" RenderMode="Link">
+                    <ClientSideEvents Click="function(s, e) {
+		                    e.processOnServer = confirm('Silmek istiyor musunuz?');
+                    }" />
+                    <Image Url="~/images/DeleteList2_16x16.png">
+                    </Image>
+                </dx:ASPxButton>
+            </DataItemTemplate>
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="İlçe Kodu" FieldName="ILCEID" VisibleIndex="1" Width="100px">
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="İlçe" FieldName="AD" VisibleIndex="2" Width="100px">
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Mahalle" FieldName="I_ADI" VisibleIndex="3" Width="100px">
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Enlem" FieldName="LAT" VisibleIndex="4" Width="100px">
+            <PropertiesTextEdit MaxLength="8">
+                <MaskSettings Mask="00000000" />
+            </PropertiesTextEdit>
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Boylam"  FieldName="LONG" VisibleIndex="5" Width="100px">
+                 <PropertiesTextEdit MaxLength="8">
+                <MaskSettings Mask="00000000" />
+            </PropertiesTextEdit>
+        </dx:GridViewDataTextColumn>
+    </Columns>
+    <SettingsBehavior AllowFocusedRow="True" />
+    <Settings ShowFilterRow="True" ShowGroupPanel="True" />
+    <SettingsText EmptyDataRow="Veri yok..." />
+</dx:ASPxGridView>
+
+
+<dx:ASPxGridViewExporter ID="ASPxGridViewExporter1" runat="server">
+</dx:ASPxGridViewExporter>
+
+
+
+<script type="text/javascript">
+    function OnIlChanged(cmbIl) {
+        cmbIlce.PerformCallback(cmbIl.GetValue().toString());
+ 
+    }
+     
+</script>
+
+
+
+

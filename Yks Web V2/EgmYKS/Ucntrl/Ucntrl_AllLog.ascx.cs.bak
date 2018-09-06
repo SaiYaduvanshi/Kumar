@@ -1,0 +1,142 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace EgmYKS.Ucntrl
+{
+    public partial class Ucntrl_AllLog : System.Web.UI.UserControl
+    {
+        string datemode = ConfigurationManager.AppSettings["Datemode"].ToString();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                YETKIKONTROL();
+                FillCombobox();
+                ASPxDateEdit1.Date = DateTime.Now;
+                ASPxDateEdit2.Date = DateTime.Now;
+                ASPxTimeEdit1.Text = DateTime.Now.ToString("00:00");
+                ASPxTimeEdit2.Text = DateTime.Now.ToString("23:59");
+     
+            }
+            YUKLE();
+         
+           
+        }
+
+        void YETKIKONTROL()
+        {
+
+            try
+            {
+                bool OKU = false; bool YAZ = false; bool SIL = false; string USERS = ""; bool EKSTRA = false;
+                HelperDataLib.Select.S_YETKI_GETVALUES("301", ref OKU, ref YAZ, ref SIL, ref EKSTRA, ref USERS);
+                
+                if (OKU == false)
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        private void YUKLE()
+        {
+            try
+            {
+                string Tarih1 = ASPxDateEdit1.Date.ToString(datemode) + " " + ASPxTimeEdit1.DateTime.ToString("HH:mm:ss");
+                string Tarih2 = ASPxDateEdit2.Date.ToString(datemode) + " " + ASPxTimeEdit2.DateTime.ToString("HH:mm:ss");
+                DataTable dt = HelperDataLib.Select.S_LOGFilter(cmbLogTable.Value.ToString(), txtKullanici.Text, Tarih1, Tarih2);
+                gridview1.DataSource = dt;
+                gridview1.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+               
+       
+       
+        }
+         
+        private void TEMIZLE()
+        {
+            txtKullanici.Text = "";
+            cmbLogTable.SelectedIndex = -1;
+            ASPxDateEdit1.Date = DateTime.Now;
+            ASPxDateEdit2.Date = DateTime.Now;
+            ASPxTimeEdit1.Text = DateTime.Now.ToString("00:00");
+            ASPxTimeEdit2.Text = DateTime.Now.ToString("23:59");
+        }
+        void MESAJKAPAT()
+        {
+            succes.Visible = false;
+            error.Visible = false;
+            Warning.Visible = false;
+        }
+
+
+        protected void ASPxMenu1_ItemClick(object source, DevExpress.Web.ASPxMenu.MenuItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.Name == "YUKLE")
+                {
+                    YUKLE();
+                }
+                if (e.Item.Name == "SATIR")
+                {
+                    Session["SS_Islem_SatirSayisi"] = e.Item.Text;
+                    gridview1.SettingsPager.PageSize = Convert.ToInt32(Session["SS_Islem_SatirSayisi"]);
+                    ASPxMenu1.Items[2].Text = "Satır Sayısı" + "(" + Session["SS_Islem_SatirSayisi"].ToString() + ")";
+                }
+                if (e.Item.Name == "EXCEL")
+                {
+                    if (gridview1.VisibleRowCount != 0)
+                    {
+                        ASPxGridViewExporter1.GridViewID = "gridview1";
+                        ASPxGridViewExporter1.FileName = "Raporları" + "_" + DateTime.Now;
+                        ASPxGridViewExporter1.WriteXlsxToResponse();
+                    }
+                }
+                if (e.Item.Name == "TEMIZLE")
+                {
+                    TEMIZLE();
+                }
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        private void FillCombobox()
+        {
+            try
+            {
+                DataTable dt = HelperDataLib.Select.S_LOG();
+                cmbLogTable.DataSource = dt;
+                cmbLogTable.ValueField = "name";
+                cmbLogTable.TextField = "_text";
+                cmbLogTable.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+    }
+}

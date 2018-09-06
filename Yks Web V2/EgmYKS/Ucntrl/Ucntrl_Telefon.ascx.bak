@@ -1,0 +1,131 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Ucntrl_Telefon.ascx.cs" Inherits="EgmYKS.Ucntrl.Ucntrl_Telefon" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxMenu" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridView" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
+  <link rel="Shortcut Icon" href="~/Logo/icon.png" type="image/x-icon"/>
+    <link href="../css/themes/bootstrap.min.css" rel="stylesheet" />
+ 
+    <link href="../css/theme.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#menuislemleri>a").addClass("open");
+        $("#menuislemleri>ul").css("display", "block");
+    });
+</script>
+<h3>
+                                <i class="fa fa-users"></i>Telefon Rehberi
+                            </h3>
+ <asp:Panel ID="succes" runat="server" Visible="false" Width="100%">
+                            <div class="alert alert-success alert-dismissable" style="width: 100%">
+                                <a class="close" data-dismiss="alert" href="#">×</a> <strong>Başarılı!</strong>
+                                İşleminiz başarı ile gerçekleşti.
+                            </div>
+                        </asp:Panel>
+                        <asp:Panel ID="error" runat="server" Visible="false" Width="100%">
+                            <div class="alert alert-danger" style="width: 100%">
+                                <a class="close" data-dismiss="alert" href="#">×</a> <strong>Hata!</strong> İşleminiz
+                                hata aldı!
+                            </div>
+                        </asp:Panel>
+                        <asp:Panel ID="Warning" runat="server" Visible="false" Width="100%">
+                            <div class="alert alert-warning" style="width: 100%">
+                                <a class="close" data-dismiss="alert" href="#">×</a> <strong>Uyarı!</strong> (*)
+                                alanları yazınız!
+                            </div>
+                        </asp:Panel>
+<asp:Panel ID="Warning2" runat="server" Visible="false" Width="100%">
+    <div class="alert alert-warning" style="width: 100%">
+        <a class="close" data-dismiss="alert" href="#">×</a> <strong>Uyarı!</strong>
+      <strong><span class="repeated">  Bu ekip kodu mevcut!</span></strong>
+    </div>
+</asp:Panel>
+
+
+<asp:Panel ID="Warning_error" runat="server" Visible="false" Width="100%">
+    <div class="alert alert-warning" style="width: 100%">
+        <a class="close" data-dismiss="alert" href="#">×</a> <strong>Uyarı: 
+        <asp:Label ID="lblerrormesaj" runat="server"></asp:Label>
+        </strong>
+    </div>
+</asp:Panel>
+
+<div style="width: 100%">
+    <asp:Label ID="Label1" runat="server" Text="Sicil No"></asp:Label>
+    <dx:ASPxComboBox ID="t_ekipkodu" runat="server" Theme="Moderno" ValueType="System.String" Width="100%">
+    </dx:ASPxComboBox>
+    <asp:Label ID="Label3" runat="server" Text="Telefon"></asp:Label>
+    <dx:ASPxTextBox ID="ASPxTextBox4" runat="server" Theme="Moderno" Width="100%">
+             
+    </dx:ASPxTextBox>
+    <asp:Label ID="Label4" runat="server" Text="İsim Soyisim"></asp:Label>
+    <dx:ASPxTextBox ID="ASPxTextBox2" runat="server" Theme="Moderno" Width="100%">
+    </dx:ASPxTextBox>
+    <asp:Label ID="Label5" runat="server" Text="Görevi"></asp:Label>
+    <dx:ASPxTextBox ID="ASPxTextBox3" runat="server" Theme="Moderno" Width="100%">
+    </dx:ASPxTextBox>
+    <asp:Label ID="Label6" runat="server" Text="Görev Yeri"></asp:Label>
+    <dx:ASPxTextBox ID="ASPxTextBox5" runat="server" Theme="Moderno" Width="100%">
+    </dx:ASPxTextBox>
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <dx:ASPxButton ID="ASPxButton1" runat="server" Text="Kaydet" Theme="Moderno" OnClick="ASPxButton1_Click">
+                </dx:ASPxButton>
+            </td>
+            <td>&nbsp;</td>
+            <td align="right">
+                <dx:ASPxButton ID="ASPxButton2" runat="server" Text="Yeni" Theme="Moderno" OnClick="ASPxButton2_Click">
+                </dx:ASPxButton>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
+    EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="E_ID">
+    <Columns>
+        <dx:GridViewDataTextColumn Caption="Ekip Kodu" FieldName="E_KODU" VisibleIndex="2" 
+            Width="20%">
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Seç" VisibleIndex="10" Width="2%">
+            <DataItemTemplate>
+                <dx:ASPxButton ID="ASPxButton3" runat="server" OnCommand="ASPxButton3_Command"  CommandArgument="<%# Bind('E_ID')%>" RenderMode="Link">
+                    <Image Url="~/images/Show_16x16.png">
+                    </Image>
+                </dx:ASPxButton>
+            </DataItemTemplate>
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Sil" VisibleIndex="11" Width="2%" Visible="False">
+            <DataItemTemplate>
+                <dx:ASPxButton ID="ASPxButton4" runat="server" OnCommand="ASPxButton4_Command"  CommandArgument="<%# Bind('E_ID') %>" RenderMode="Link">
+                    <ClientSideEvents Click="function(s, e) {
+	e.processOnServer = confirm('Silmek istiyor musunuz?');
+}" />
+                    <Image Url="~/images/DeleteList2_16x16.png">
+                    </Image>
+                </dx:ASPxButton>
+            </DataItemTemplate>
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Telefon" FieldName="E_TELEFON" VisibleIndex="3" Width="16%">
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="İsim Soyisim" FieldName="E_ISIMSOYISIM" VisibleIndex="4" Width="20%">
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Görevi" FieldName="E_GOREVI" VisibleIndex="6" Width="20%">
+        </dx:GridViewDataTextColumn>
+        <dx:GridViewDataTextColumn Caption="Görev Yeri" FieldName="E_GOREVYERI" VisibleIndex="9" Width="20%">
+        </dx:GridViewDataTextColumn>
+    </Columns>
+    <SettingsBehavior AllowFocusedRow="True" />
+    <SettingsPager>
+        <Summary Text="Sayfa {0} / {1} ({2} veri)" />
+    </SettingsPager>
+    <Settings ShowFilterRow="True" />
+    <SettingsText EmptyDataRow="Veri yok..." />
+    <SettingsLoadingPanel Text="Yükleniyor&amp;hellip;" />
+</dx:ASPxGridView>
+
+
+

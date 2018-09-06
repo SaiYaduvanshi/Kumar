@@ -1,0 +1,159 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="EgmYKS.MasterPages.Master" Debug="true" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>EGM YKS</title>
+    <meta name="description" content="AktifTelecom" />
+    <meta name="author" content="pixelcave" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="../Favicon/favicon.png" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/plugins.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/themes.css" />
+    <link href="../css/custom.css" rel="stylesheet" />
+    <script src="../js/vendor/modernizr-2.7.1-respond-1.4.2.min.js"></script>
+    <script>!window.jQuery && document.write(decodeURI('%3Cscript src="js/vendor/jquery-1.11.1.min.js"%3E%3C/script%3E'));</script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/app.js"></script>
+
+
+    <script src="../js/pages/index.js"></script>
+    <script>$(function () { Index.init(); });</script>
+   <%-- <script src="../js/Chart.min.js"></script>--%>
+    <script>
+        $("a[data-toggle='collapse']").click(function () {
+            $(this).children('.fa').toggleClass('fa-chevron-up fa-chevron-down');
+        });
+    </script>
+    <style type="text/css">
+        .repeated {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+
+                <div id="sidebar">
+                    <div class="sidebar-scroll">
+
+                        <div class="sidebar-content">
+
+                            <a href="Default.aspx" class="sidebar-brand">
+                                <img src="../images/İcon.png" height="36" /><strong> EGM</strong>   YKS
+                            </a>
+
+                            <br />
+                            <div class="sidebar-user-links">
+                                <i class="gi gi-user "></i>
+                                <asp:Label ID="Label8" runat="server" Text=""></asp:Label>
+                            </div>
+
+                            <ul class="sidebar-nav">
+                                <li>
+                                    <a class=" active"><i class="gi gi-share sidebar-nav-icon"></i>SSG:<asp:Label ID="Label1" runat="server" Text=""></asp:Label></a>
+                                </li>
+                                <li class="sidebar-header">
+
+                                    <span class="sidebar-header-title">İşlemler</span>
+                                </li>
+
+                                <li id="kullaniciislemleri">
+                                    <a href="#" class="sidebar-nav-menu"><i class="gi gi-share sidebar-nav-indicator"></i><i class="fa fa-users sidebar-nav-icon"></i>Kullanıcı İşlemleri</a>
+                                    <ul>
+                                        <li>
+                                            <asp:Panel ID="_101" runat="server" Visible="false">
+                                                <a href="Yetki.aspx"><i class="fa fa-bolt sidebar-nav-icon"></i>Yetkiler</a>
+                                            </asp:Panel>
+                                        </li>
+                                        <li>
+                                            <asp:Panel ID="_102" runat="server" Visible="false">
+                                                <a href="Grup.aspx"><i class="gi gi-parents sidebar-nav-icon"></i>Gruplar</a>
+                                            </asp:Panel>
+                                        </li>
+                                        <li>
+                                            <asp:Panel ID="_103" runat="server" Visible="false">
+                                                <a href="KullaniciListesi.aspx"><i class="fa fa-users sidebar-nav-icon"></i>Kullanıcılar</a>
+                                            </asp:Panel>
+                                        </li>
+
+
+                                    </ul>
+                                </li>
+                                <li id="ihbarislemleri">
+                                    <a href="#" class="sidebar-nav-menu"><i class="gi gi-share sidebar-nav-indicator"></i><i class="fa fa-users sidebar-nav-icon"></i>İhbar İşlemleri</a>
+                                    <ul>
+                                        <li>
+                                            <asp:Panel ID="Panel1" runat="server">
+                                                <a href="../Kanal.aspx"><i class="fa fa-bolt sidebar-nav-icon"></i>Kanal</a>
+                                            </asp:Panel>
+                                        </li>
+                                        
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+
+                            <ul class="sidebar-nav">
+                                <li>
+                                    <a href="Login.aspx"><i class="gi gi-exit sidebar-nav-icon"></i>Güvenli Çıkış</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="main-container">
+
+                    <header class="navbar navbar-default">
+                        <ul class="nav navbar-nav-custom">
+                            <li>
+                                <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
+                                    <i class="fa fa-bars fa-fw"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </header>
+                    <div id="page-content">
+                        <form action="" method="post" class="navbar-form-custom">
+                            <div class="form-group">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </form>
+                    </div>
+                    <footer class="clearfix">
+                        <div class="pull-right">
+                            EGM YKS by <a href="http://www.aktiftelecom.com" target="_blank">Aktiftelecom</a>
+                        </div>
+                        <div class="pull-left">
+                            2017 &copy; <a href="http://www.aktiftelecom.com" target="_blank">EGM YKS 1.0</a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+        </div>
+         
+
+    </form>
+</body>
+</html>

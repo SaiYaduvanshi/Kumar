@@ -1,0 +1,139 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Ucntrl_AllLog.ascx.cs" Inherits="EgmYKS.Ucntrl.Ucntrl_AllLog" %>
+
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxEditors" TagPrefix="dx" %>
+<%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxMenu" tagprefix="dx" %>
+  <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridView.Export" tagprefix="dx" %>
+  <script>
+    $(document).ready(function () {
+        $("#raporislemleri>a").addClass("open");
+        $("#raporislemleri>ul").css("display", "block");
+    });
+</script>
+<h3>
+    <i class="fa fa-users"></i>Alarm Tanımı
+</h3>
+ <asp:Panel ID="succes" runat="server" Visible="false" Width="100%">
+<div class="alert alert-success alert-dismissable" style="width: 100%">
+    <a class="close" data-dismiss="alert" href="#">×</a> <strong>Başarılı!</strong>
+    İşleminiz başarı ile gerçekleşti.
+</div>
+</asp:Panel>
+<asp:Panel ID="error" runat="server" Visible="false" Width="100%">
+<div class="alert alert-danger" style="width: 100%">
+    <a class="close" data-dismiss="alert" href="#">×</a> <strong>Hata!</strong> İşleminiz
+    hata aldı!
+</div>
+</asp:Panel>
+<asp:Panel ID="Warning" runat="server" Visible="false" Width="100%">
+<div class="alert alert-warning" style="width: 100%">
+    <a class="close" data-dismiss="alert" href="#">×</a> <strong>Uyarı!</strong> (*)
+    alanları yazınız!
+</div>
+</asp:Panel>
+
+<div style="width: 100%">
+     <asp:Label ID="Label2" runat="server" Text="LOG TABLOSU"></asp:Label>
+    <dx:ASPxComboBox ID="cmbLogTable" runat="server" Theme="Moderno" Width="100%"> 
+    </dx:ASPxComboBox>
+
+    <asp:Label ID="Label1" runat="server" Text="KULLANICI"></asp:Label>
+    <dx:ASPxTextBox ID="txtKullanici" runat="server" Theme="Moderno" Width="100%">
+    </dx:ASPxTextBox> 
+     
+     <table style="width:100%;">
+         <tr>
+             <td  class="auto-style1">
+                  <asp:Label ID="Label3" runat="server" Text="Başlama Tarihi"></asp:Label>
+                <dx:ASPxDateEdit ID="ASPxDateEdit1" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxDateEdit>
+             </td>
+             <td  class="auto-style1">
+                 <asp:Label ID="Label4" runat="server" Text="Bitiş Tarihi"></asp:Label>
+                <dx:ASPxDateEdit ID="ASPxDateEdit2" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxDateEdit>
+             </td>
+         </tr>
+         <tr>
+             <td class="auto-style1">
+                <asp:Label ID="Label5" runat="server" Text="Başlama Saati"></asp:Label>
+                <dx:ASPxTimeEdit ID="ASPxTimeEdit1" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxTimeEdit>
+            </td>
+            <td class="auto-style1">
+                <asp:Label ID="Label6" runat="server" Text="Bitiş Saati"></asp:Label>
+                <dx:ASPxTimeEdit ID="ASPxTimeEdit2" runat="server" Theme="Moderno" Width="100%">
+                </dx:ASPxTimeEdit>
+            </td>
+         </tr>
+     </table>
+
+    
+
+     
+
+      <dx:ASPxMenu ID="ASPxMenu1" runat="server" EnableTheming="True" ItemAutoWidth="False" Theme="Moderno" Width="100%" AutoPostBack="True" OnItemClick="ASPxMenu1_ItemClick">
+    <Items>
+        <dx:MenuItem Text="Yükle" Name="YUKLE">
+            <Image Url="~/images/Refresh_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Text="Excel'e Aktar" Name="EXCEL" Enabled="False">
+            <Image Url="~/images/ExportToXLSX_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Text="Satır" Name="SATIR">
+            <Items>
+                <dx:MenuItem Name="SATIR" Text="10">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="15">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="20">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="25">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="50">
+                </dx:MenuItem>
+                <dx:MenuItem Name="SATIR" Text="100">
+                </dx:MenuItem>
+            </Items>
+            <Image Url="~/images/ListNumbers_16x16.png">
+            </Image>
+        </dx:MenuItem>
+        <dx:MenuItem Name="TEMIZLE" Text="Temizle">
+            <Image Url="~/images/DeleteList2_16x16.png">
+            </Image>
+        </dx:MenuItem>
+    </Items>
+</dx:ASPxMenu>
+</div>
+
+<dx:ASPxGridView ID="gridview1" runat="server" AutoGenerateColumns="False" 
+    EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="ID">
+    <Columns> 
+         
+        <dx:GridViewDataColumn FieldName="KULLANICI" Caption="KULLANICI"></dx:GridViewDataColumn>
+        <dx:GridViewDataColumn FieldName="IP" Caption="IP"></dx:GridViewDataColumn>
+        <dx:GridViewDataColumn FieldName="MAC" Caption="MAC"></dx:GridViewDataColumn>
+        <dx:GridViewDataColumn FieldName="ISLEM" Caption="ISLEM"></dx:GridViewDataColumn>
+        <dx:GridViewDataColumn FieldName="TARIHSAAT" Caption="TARIH"></dx:GridViewDataColumn>
+           <dx:GridViewDataTextColumn Caption="SAAT" FieldName="TARIHSAAT" VisibleIndex="7" Width="3%">
+                    <PropertiesTextEdit DisplayFormatString="hh:mm:ss">
+                    </PropertiesTextEdit>
+                    <Settings FilterMode="DisplayText" />
+                </dx:GridViewDataTextColumn>
+        
+         
+    </Columns>
+    <SettingsBehavior AllowFocusedRow="True" />
+    <SettingsPager>
+        <Summary Text="Sayfa {0} / {1} ({2} veri)" />
+    </SettingsPager>
+    <Settings ShowFilterRow="True" />
+    <SettingsText EmptyDataRow="Veri yok..." />
+    <SettingsLoadingPanel Text="Yükleniyor&amp;hellip;" />
+</dx:ASPxGridView>
+
+  
+<dx:ASPxGridViewExporter ID="ASPxGridViewExporter1" runat="server">
+</dx:ASPxGridViewExporter>

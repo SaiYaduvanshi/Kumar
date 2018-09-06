@@ -1,0 +1,294 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DevExpress.Web;
+
+namespace EgmYKS.Ucntrl
+{
+    public partial class Ucntrl_KanalGrup : System.Web.UI.UserControl
+    {
+           protected void Page_Load(object sender, EventArgs e)
+           {
+                  if (!Page.IsPostBack)
+                  {
+                         Session["d_kanal"] = null; Session["d_kanalid"] = null;
+                         GRUPLISTE();
+                         KANAL_GRUPYUKLE();
+                  }
+                  YETKIKONTROL();
+           }
+           void MESAJKAPAT()
+           {
+                  succes.Visible = false;
+                  error.Visible = false;
+                  Warning.Visible = false;
+                  Warning2.Visible = false;
+           }
+           void YETKIKONTROL()
+           {
+                  try
+                  {
+                         bool OKU = false; bool YAZ = false; bool SIL = false; string USERS = ""; bool EKSTRA = false; 
+                         HelperDataLib.Select.S_YETKI_GETVALUES("309", ref OKU, ref YAZ, ref SIL, ref EKSTRA, ref USERS);
+                         if (YAZ == true)
+                         {
+                                ASPxButton1.Enabled = true;
+                                ASPxButton2.Enabled = true;
+                         }
+                         if (SIL == true)
+                         {
+                                ASPxGridView2.Columns["Sil"].Visible = true;
+                         }
+                         if (OKU == false)
+                         {
+                                Response.Redirect("~/Default.aspx");
+                         }
+                  }
+                  catch(Exception c)
+                  {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+           }
+           void GRUPLISTE()
+           {
+            try
+            {
+                ASPxGridView2.DataSource = HelperDataLib.Select.S_GRUP_KANAL_LISTESI();
+                ASPxGridView2.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+           }
+           void KANAL_GRUPYUKLE()
+           {
+                  try
+                  {
+                         ASPxGridView1.Selection.UnselectAll();
+                         ASPxGridView1.DataSource = HelperDataLib.Select.S_KANAL_TUM();
+                         ASPxGridView1.DataBind();
+                         if (Session["d_kanal"] != null)
+                         {
+                                string[] arg = new string[100];
+                                arg = Session["d_kanal"].ToString().Split(';');
+                                for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                                {
+                                       object kod = ASPxGridView1.GetRowValues(i, "KNL_KODU");
+                                       foreach (string t in arg)
+                                       {
+                                              if (t.ToString() == kod.ToString())
+                                              {
+                                                     ASPxGridView1.Selection.SelectRow(i);
+                                              }
+                                       }
+                                }
+                         }
+                  }
+                  catch(Exception c)
+                  {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+           }
+           protected void ASPxButton1_Click(object sender, EventArgs e)
+           {
+                  MESAJKAPAT();
+                  if (ASPxTextBox2.Text != "")
+                  {
+                      if (Session["d_kanalid"] == null)
+                         {
+                                KAYDET();
+                         }
+                         else
+                         {
+                                GUNCELLE();
+                         }
+                  }
+                  else
+                  {
+                         Warning.Visible = true;
+                  }
+           }
+           void GUNCELLE()
+           {
+
+                  bool durum1 = false; object KANAL = "";
+                  for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                  {
+                         if (ASPxGridView1.Selection.IsRowSelected(i) == true)
+                         {
+                             if (KANAL.ToString() == "")
+                                {
+                                    KANAL = ASPxGridView1.GetRowValues(i, "KNL_KODU");
+                                }
+                                else
+                                {
+                                    KANAL += ";" + ASPxGridView1.GetRowValues(i, "KNL_KODU");
+                                }
+                         }
+                  }
+
+
+            try
+            {
+                string GRUPADI = HelperDataLib.Select.S_KANALGRUP_KONTROL(ASPxTextBox2.Text.Trim().ToUpper());
+                if (GRUPADI == "")
+                {
+
+                    HelperDataLib.Update.U_KANALGRUP(Session["d_kanalid"].ToString(), ASPxTextBox2.Text, KANAL.ToString(), ASPxCheckBox1.Checked, ref durum1);
+                    if (durum1 == true)
+                    {
+                        TEMIZLE();
+                        KANAL_GRUPYUKLE();
+                        GRUPLISTE();
+                        succes.Visible = true;
+                    }
+
+                    else
+                    {
+                        error.Visible = false;
+                    }
+
+                }
+                else { Warning2.Visible = true;  }
+            }
+            catch (Exception c)
+            {
+                lblerrormesaj.Text = "YONETIM PROJESİ " + this.Page.ToString() + " sayfası " + System.Reflection.MethodBase.GetCurrentMethod().Name + " metodu hatası : " + c.Message;
+                //LOGKOMUTSATIRI
+                bool durum3 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum3);
+                Warning_error.Visible = true;
+            }
+
+
+           }
+           void KAYDET()
+           {
+               bool durum1 = false; object KANAL = "";
+                  for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                  {
+                         if (ASPxGridView1.Selection.IsRowSelected(i) == true)
+                         {
+                             if (KANAL.ToString() == "")
+                                {
+                                    KANAL = ASPxGridView1.GetRowValues(i, "KNL_KODU");
+                                }
+                                else
+                                {
+                                    KANAL += ";" + ASPxGridView1.GetRowValues(i, "KNL_KODU");
+                                }
+                         }
+                  }
+
+            try
+            {
+                string GRUPADI = HelperDataLib.Select.S_KANALGRUP_KONTROL(ASPxTextBox2.Text.Trim().ToUpper());
+                if (GRUPADI == "")
+                {
+
+                    HelperDataLib.Insert.I_KANALGRUP(HelperDataLib.Select.S_GETMAXGRUP().ToString(), ASPxTextBox2.Text.Trim().ToUpper(), KANAL.ToString(), ASPxCheckBox1.Checked, ref durum1);
+                    if (durum1 == true)
+                    {
+                        TEMIZLE();
+                        KANAL_GRUPYUKLE();
+                        GRUPLISTE();
+                        succes.Visible = true;
+                    }
+
+                    else
+                    {
+                        error.Visible = false;
+                    }
+                }
+                else { Warning2.Visible = true;  }
+            }
+            catch (Exception c)
+            {
+                lblerrormesaj.Text = "YONETIM PROJESİ " + this.Page.ToString() + " sayfası " + System.Reflection.MethodBase.GetCurrentMethod().Name + " metodu hatası : " + c.Message;
+                //LOGKOMUTSATIRI
+                bool durum3 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum3);
+                Warning_error.Visible = true;
+            }
+
+
+           }
+           void TEMIZLE()
+           {
+
+                  ASPxTextBox2.Text = "";
+                  Session["d_kanalid"] = null;
+                  Session["d_kanal"] = null;
+                  MESAJKAPAT();
+
+           }
+
+
+           protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+           {
+                  try
+                  {
+                         //sil
+                         MESAJKAPAT();
+                         bool durum = false;
+                         ImageButton img = (ImageButton)sender;
+                         string doc = img.CommandArgument;
+                         HelperDataLib.Delete.D_KANAL_GRUP(doc, ref durum);
+                         if (durum == true)
+                         {
+                                TEMIZLE();
+                                KANAL_GRUPYUKLE();
+                                GRUPLISTE();
+                                succes.Visible = true;
+                         }
+
+                         else
+                         {
+                                error.Visible = false;
+                         }
+                  }
+                  catch(Exception c)
+                  {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+           }
+
+           protected void ASPxButton2_Click(object sender, EventArgs e)
+           {
+                  TEMIZLE();
+                  MESAJKAPAT();
+           }
+
+           protected void ImageButton1_Click1(object sender, ImageClickEventArgs e)
+           {
+                  try
+                  {
+                         MESAJKAPAT();
+                         ImageButton img = (ImageButton)sender;
+                         string doc = img.CommandArgument;
+                         string[] arg = new string[999];
+                         arg = doc.ToString().Split('-');
+                         Session["d_kanalid"] = arg[0];
+                         ASPxCheckBox1.Checked = false;
+                         ASPxTextBox2.Text = arg[2];
+                         Session["d_kanal"] = arg[3];
+
+                         KANAL_GRUPYUKLE();
+                         ASPxPageControl1.ActiveTabIndex = 1;
+                  }
+                  catch(Exception c)
+                  {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+           }
+    }
+}

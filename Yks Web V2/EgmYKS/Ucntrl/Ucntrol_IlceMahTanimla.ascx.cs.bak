@@ -1,0 +1,320 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace EgmYKS.Ucntrl
+{
+    public partial class Ucntrol_IlceMahTanimla : System.Web.UI.UserControl
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                YETKIKONTROL();
+            }
+            FillGrid();
+            if (!IsPostBack & !Page.IsCallback)
+            {
+                Ilceler(); 
+            }
+        }
+
+
+        void YETKIKONTROL()
+        {
+
+            try
+            {
+                bool OKU = false; bool YAZ = false; bool SIL = false; string USERS = ""; bool EKSTRA = false;
+                HelperDataLib.Select.S_YETKI_GETVALUES("202", ref OKU, ref YAZ, ref SIL, ref EKSTRA, ref USERS);
+                if (YAZ == true)
+                {
+
+                    DevExpress.Web.ASPxMenu.MenuItem EXCEL = this.ASPxMenu1.Items.FindByName("EXCEL");
+                    EXCEL.Enabled = true;
+
+                }
+                if (OKU == false)
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        private void FillGrid()
+        {
+            try
+            {
+                DataTable dt = HelperDataLib.Select.S_GET_ILCE_MAHALLE("");
+                gridview1.DataSource = dt;
+                gridview1.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+
+        }
+
+
+        protected void ASPxMenu1_ItemClick(object source, DevExpress.Web.ASPxMenu.MenuItemEventArgs e)
+        {
+            if (e.Item.Name == "KAYDET")
+            {
+                INSERTEDIT();
+            }
+            if (e.Item.Name == "SATIR")
+            {
+                Session["SS_Islem_SatirSayisi"] = e.Item.Text;
+                if (Session["SS_Islem_SatirSayisi"] == null)
+                {
+                    Session["SS_Islem_SatirSayisi"] = 10;
+                }
+
+                gridview1.SettingsPager.PageSize = Convert.ToInt32(Session["SS_Islem_SatirSayisi"]);
+                ASPxMenu1.Items[2].Text = "Satır Sayısı" + "(" + Session["SS_Islem_SatirSayisi"].ToString() + ")";
+            }
+            if (e.Item.Name == "EXCEL")
+            {
+                ASPxGridViewExporter1.GridViewID = "gridview1";
+                ASPxGridViewExporter1.FileName = "Raporları" + "_" + DateTime.Now;
+                ASPxGridViewExporter1.WriteXlsxToResponse();
+            }
+            if (e.Item.Name == "TEMIZLE")
+            {
+                TEMIZLE();
+            }
+        }
+
+        private void INSERTEDIT()
+        {
+            MESAJKAPAT();
+
+            if (string.IsNullOrEmpty(txtilcekodu.Text) | string.IsNullOrEmpty(txtEnlem.Text) | string.IsNullOrEmpty(txtBoylam.Text) | string.IsNullOrEmpty(cmbIlce.Text) | string.IsNullOrEmpty(cmbMahalle.Text))
+            {
+                Warning.Visible = true;
+                return;
+            }
+
+            if (Session["mahid"] == null | Session["mahid"] == "")
+            {
+                INSERT();
+            }
+            else
+            {
+                EDIT();
+            }
+        }
+
+        private void EDIT()
+        {
+            try
+            {
+                MESAJKAPAT();
+                bool sonuc = false;
+                int _param0 = HelperDataLib.Methods.ObjectStringtoint(Session["mahid"]);
+                string _param1 = HelperDataLib.Methods.ObjectnullorEmpty(cmbIlce.Value);
+                string _param2 = HelperDataLib.Methods.ObjectnullorEmpty(cmbMahalle.Value);
+                string _param3 = HelperDataLib.Methods.ObjectnullorEmpty(txtilcekodu.Text);
+                string _param4 = HelperDataLib.Methods.ObjectnullorEmpty(txtEnlem.Text);
+                string _param5 = HelperDataLib.Methods.ObjectnullorEmpty(txtBoylam.Text);
+                int _param6 = Convert.ToInt32(chDurum.Checked);
+
+                //    HelperDataLib.Update.U_GUVENLIKMUSTERI(_param0, _param1, _param2, _param3, _param4, _param5, _param6, _param7, _param8, _param9, _param10, _param11, _param12, _param13, _param14, _param15, _param16, _param17, ref sonuc);
+
+                if (sonuc == true)
+                {
+                    succes.Visible = true;
+                    TEMIZLE();
+                    FillGrid();
+                }
+                else
+                {
+                    error.Visible = true;
+                }
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        private void INSERT()
+        {
+
+            try
+            {
+                bool sonuc = false;
+                string _param1 = HelperDataLib.Methods.ObjectnullorEmpty(cmbIlce.Value);
+                string _param2 = HelperDataLib.Methods.ObjectnullorEmpty(cmbMahalle.Value);
+                string _param3 = HelperDataLib.Methods.ObjectnullorEmpty(txtilcekodu.Text);
+                string _param4 = HelperDataLib.Methods.ObjectnullorEmpty(txtEnlem.Text);
+                string _param5 = HelperDataLib.Methods.ObjectnullorEmpty(txtBoylam.Text);
+                int _param17 = Convert.ToInt32(chDurum.Checked);
+
+                //HelperDataLib.Insert.I_GUVENLIKMUSTERI(_param1, _param2, _param3,HelperDataLib.Select.convertcoordlatformat( _param4), HelperDataLib.Select.convertcoordlongformat(_param5), _param6, _param7, _param8, _param9, _param10, _param11, _param12, _param13, _param14, _param15, _param16, _param17, ref sonuc);
+                if (sonuc)
+                {
+                    succes.Visible = true;
+                    TEMIZLE();
+                    FillGrid();
+                }
+                else
+                {
+
+                    error.Visible = true;
+                }
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        private void TEMIZLE()
+        {
+            Session["mahid"] = "";
+            cmbIlce.SelectedIndex = -1;
+            cmbMahalle.SelectedIndex = -1;
+            txtilcekodu.Text = "";
+            txtBoylam.Text = "";
+            txtEnlem.Text = "";
+            chDurum.Checked = false;
+        }
+
+        protected void cmbMahalle_Callback(object sender, DevExpress.Web.ASPxClasses.CallbackEventArgsBase e)
+        {
+            Mahalleler(e.Parameter); 
+        }
+
+
+        void Ilceler()
+        {
+            try
+            {
+                cmbIlce.DataSource = HelperDataLib.Select.S_ILCE("41");
+                cmbIlce.ValueField = "ILCEID";
+                cmbIlce.TextField = "AD";
+                cmbIlce.DataBind();
+            }
+            catch(Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void Mahalleler(string ilceid)
+        {
+            try
+            {
+                DataTable dt = HelperDataLib.Select.S_Mahalle(ilceid);
+                cmbMahalle.DataSource = dt;
+                cmbMahalle.ValueField = "I_MAHID";
+                cmbMahalle.TextField = "I_ADI";
+                cmbMahalle.DataBind();
+
+            }
+            catch
+            {
+                try
+                {
+                    return;
+                }
+                catch (Exception c)
+                {
+                    bool durum1 = false;
+                    HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+                } }
+
+        }
+ 
+
+        protected void btnSec_Command(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string doc = e.CommandArgument.ToString();
+                Session["mahid"] = doc;
+                DataTable d = HelperDataLib.Select.S_GET_ILCE_MAHALLE(doc);
+                txtBoylam.Text = d.Rows[0]["LONG"].ToString();
+                txtEnlem.Text = d.Rows[0]["LAT"].ToString();
+                txtilcekodu.Text = d.Rows[0]["I_ILCEID"].ToString();
+                cmbIlce.SelectedItem = cmbIlce.Items.FindByValue(d.Rows[0]["I_ILCEID"].ToString());
+                Mahalleler(d.Rows[0]["I_ILCEID"].ToString());
+                cmbMahalle.SelectedItem = cmbMahalle.Items.FindByValue(d.Rows[0]["I_MAHID"].ToString());
+                //   chDurum.Checked = Convert.ToBoolean(d.Rows[0]["GM_DURUM"].ToString());
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        protected void btnEdit_Command(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string doc = e.CommandArgument.ToString();
+                Session["mahid"] = doc;
+                DataTable d = HelperDataLib.Select.S_GET_ILCE_MAHALLE(doc);
+                txtilcekodu.Text = d.Rows[0]["ILCEID"].ToString();
+                txtBoylam.Text = d.Rows[0]["LONG"].ToString();
+                txtEnlem.Text = d.Rows[0]["LAT"].ToString();
+                cmbIlce.SelectedItem = cmbIlce.Items.FindByValue(d.Rows[0]["I_ILCEID"].ToString());
+                cmbMahalle.SelectedItem = cmbMahalle.Items.FindByValue(d.Rows[0]["I_MAHID"].ToString());
+                //   chDurum.Checked = Convert.ToBoolean(d.Rows[0]["GM_DURUM"].ToString());
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        void MESAJKAPAT()
+        {
+            succes.Visible = false;
+            error.Visible = false;
+            Warning.Visible = false;
+        }
+
+        protected void btnSil_Command(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                bool durum = false;
+                string doc = e.CommandArgument.ToString();
+                //HelperDataLib.Delete.D_GUVENLIKMUSTERI(doc, ref durum);
+                if (durum == true)
+                {
+
+                    succes.Visible = true;
+                    TEMIZLE();
+                    FillGrid();
+                }
+                else
+                {
+                    error.Visible = true;
+                }
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+    }
+}

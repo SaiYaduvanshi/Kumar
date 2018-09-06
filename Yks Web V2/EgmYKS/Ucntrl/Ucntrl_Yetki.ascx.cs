@@ -1,0 +1,295 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DevExpress.Web;
+
+namespace EgmYKS.Ucntrl
+{
+    public partial class Ucntrl_Yetki : System.Web.UI.UserControl
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            YETKILISTE();
+            if (!Page.IsPostBack)
+            {
+                   DETAYLISTE();
+            }
+            YETKIKONTROL();
+        }
+        void MESAJKAPAT()
+        {
+            succes.Visible = false;
+            error.Visible = false;
+            Warning.Visible = false;
+            Warning2.Visible = false;
+        }
+        void YETKIKONTROL()
+        {
+               try
+               {
+                      bool OKU = false; bool YAZ = false; bool SIL = false; string USERS = ""; bool EKSTRA = false;
+                      HelperDataLib.Select.S_YETKI_GETVALUES("101", ref OKU, ref YAZ, ref SIL, ref EKSTRA, ref USERS);
+                      if (YAZ == true)
+                      {
+                             ASPxButton1.Enabled = true;
+                             ASPxButton2.Enabled = true;
+                      }
+                      if (SIL == true)
+                      {
+                             ASPxGridView2.Columns["Sil"].Visible = true;
+                      }
+                      if (OKU == false)
+                      {
+                             Response.Redirect("~/Default.aspx");
+                      }
+               }
+               catch(Exception c)
+               {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void DETAYLISTE()
+        {
+            try
+            {
+                ASPxGridView1.DataSource = HelperDataLib.Select.S_MODUL_YUKLE();
+                ASPxGridView1.DataBind();
+            }
+            catch (Exception c)
+            {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        protected void ASPxButton1_Click(object sender, EventArgs e)
+        {
+            MESAJKAPAT();
+            if (ASPxTextBox1.Text != "")
+            {
+                if (Session["y_id"] == null)
+                {
+                    KAYDET();
+                }
+                else
+                {
+                    GUNCELLE();
+                }
+            }
+            else
+            {
+                Warning.Visible = true;
+            }
+        }
+        void GUNCELLE()
+        {
+               try
+               {
+                      bool durum1 = false;
+                      HelperDataLib.Update.U_YETKI(ASPxTextBox1.Text, Session["y_id"].ToString(), ref durum1);
+                      if (durum1 == true)
+                      {
+                             bool durum2 = false;
+                             for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                             {
+                                    object modulid = ASPxGridView1.GetRowValues(i, "MDL_MODULID");
+                                    ASPxCheckBox oku = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Okuma"] as GridViewDataColumn, "chkoku") as ASPxCheckBox;
+                                    ASPxCheckBox yaz = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Yazma"] as GridViewDataColumn, "chkyaz") as ASPxCheckBox;
+                                    ASPxCheckBox sil = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Silme"] as GridViewDataColumn, "chksil") as ASPxCheckBox;
+
+                                    ASPxCheckBox ekstra = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Ekstra"] as GridViewDataColumn, "ekstra") as ASPxCheckBox;
+
+                                    HelperDataLib.Update.U_YETKI_DETAY(modulid.ToString(), oku.Checked, yaz.Checked, sil.Checked, ekstra.Checked, Session["y_id"].ToString(), ref durum2);
+
+                             }
+                             if (durum2 == true)
+                             {
+                                    YETKILISTE();
+                                    DETAYLISTE();
+                                    TEMIZLE();
+
+                                    succes.Visible = true;
+                             }
+                             else
+                             {
+                                    error.Visible = false;
+
+                             }
+                      }
+               }
+               catch(Exception c)
+               {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void KAYDET()
+        {
+               try
+               {
+                      string yetkiadi = HelperDataLib.Select.S_GETYETKIADI_KONTROL(ASPxTextBox1.Text);
+                      if (yetkiadi == "")
+                      {
+                             bool durum1 = false;
+                             string yetkiid = HelperDataLib.Select.S_GETMAXYETKIID().ToString();
+                             HelperDataLib.Insert.I_YETKI(ASPxTextBox1.Text, yetkiid, ref durum1);
+                             if (durum1 == true)
+                             {
+                                    bool durum2 = false;
+                                    for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                                    {
+                                           object modulid = ASPxGridView1.GetRowValues(i, "MDL_MODULID");
+                                           ASPxCheckBox oku = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Okuma"] as GridViewDataColumn, "chkoku") as ASPxCheckBox;
+                                           ASPxCheckBox yaz = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Yazma"] as GridViewDataColumn, "chkyaz") as ASPxCheckBox;
+                                           ASPxCheckBox sil = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Silme"] as GridViewDataColumn, "chksil") as ASPxCheckBox;
+                                           ASPxCheckBox ekstra = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Ekstra"] as GridViewDataColumn, "ekstra") as ASPxCheckBox;
+
+                                           HelperDataLib.Insert.I_YETKI_DETAY(modulid.ToString(), oku.Checked, yaz.Checked, sil.Checked, ekstra.Checked, yetkiid, ref durum2);
+
+                                    }
+                                    if (durum2 == true)
+                                    {
+                                           YETKILISTE();
+                                           DETAYLISTE();
+                                           TEMIZLE();
+                                           succes.Visible = true;
+                                    }
+                                    else
+                                    {
+                                           error.Visible = true;
+                                    }
+                             }
+                      }
+                      else
+                      {
+                             Warning2.Visible = true;
+                      }
+               }
+               catch(Exception c)
+               {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void TEMIZLE()
+        {
+               try
+               {
+                      ASPxTextBox1.Text = "";
+                      Session["y_id"] = null;
+                      for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                      {
+
+                             ASPxCheckBox oku = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Okuma"] as GridViewDataColumn, "chkoku") as ASPxCheckBox;
+                             ASPxCheckBox yaz = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Yazma"] as GridViewDataColumn, "chkyaz") as ASPxCheckBox;
+                             ASPxCheckBox sil = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Silme"] as GridViewDataColumn, "chksil") as ASPxCheckBox;
+
+                             ASPxCheckBox ekstra = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Ekstra"] as GridViewDataColumn, "ekstra") as ASPxCheckBox;
+
+                             oku.Checked = false; yaz.Checked = false; sil.Checked = false; ekstra.Checked = false;
+
+                      }
+               }
+               catch(Exception c)
+               {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+               try
+               {
+                      //sec
+                      MESAJKAPAT();
+                      ImageButton img = (ImageButton)sender;
+                      string doc = img.CommandArgument;
+                      string[] arg = new string[2];
+                      arg = doc.ToString().Split(';');
+                      Session["y_id"] = arg[0];
+                      ASPxTextBox1.Text = arg[1];
+                      for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+                      {
+                             object modulid = ASPxGridView1.GetRowValues(i, "MDL_MODULID");
+                             bool _oku = false; bool _yaz = false; bool _sil = false; string USERS = ""; bool _ekstra = false;
+                             HelperDataLib.Select.S_YETKI_GETVALUES_DETAY(arg[0], modulid.ToString(), ref _oku, ref _yaz, ref _sil, ref _ekstra, ref USERS);
+                             ASPxCheckBox oku = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Okuma"] as GridViewDataColumn, "chkoku") as ASPxCheckBox;
+                             oku.Checked = _oku;
+                             ASPxCheckBox yaz = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Yazma"] as GridViewDataColumn, "chkyaz") as ASPxCheckBox;
+                             yaz.Checked = _yaz;
+                             ASPxCheckBox sil = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Silme"] as GridViewDataColumn, "chksil") as ASPxCheckBox;
+                             sil.Checked = _sil;
+
+                             ASPxCheckBox ekstra = ASPxGridView1.FindRowCellTemplateControl(i, ASPxGridView1.Columns["Ekstra"] as GridViewDataColumn, "ekstra") as ASPxCheckBox;
+                             ekstra.Checked = _ekstra;
+
+                      }
+                      ASPxPageControl1.ActiveTabIndex = 1;
+               }
+               catch(Exception c)
+               {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+
+        protected void ImageButton2_Click(object sender, ImageClickEventArgs e)
+        {
+               try
+               {
+                      //sil
+                      MESAJKAPAT();
+                      bool durum = false;
+                      ImageButton img = (ImageButton)sender;
+                      string doc = img.CommandArgument;
+                      HelperDataLib.Delete.D_YETKI(doc, ref durum);
+                      if (durum == true)
+                      {
+                             HelperDataLib.Delete.D_YETKI_DETAY(doc, ref durum);
+                             if (durum == true)
+                             {
+                                    YETKILISTE();
+                                    ASPxTextBox1.Text = "";
+                                    succes.Visible = true;
+                             }
+                             else
+                             {
+                                    error.Visible = false;
+                             }
+                      }
+               }
+               catch(Exception c)
+               {
+                bool durum1 = false;
+                HelperDataLib.Log.I_LOG("YKS YONETIM-" + System.Reflection.MethodBase.GetCurrentMethod().Name + " : " + c.Message.ToString(), "I_ERRORLOG", ref durum1);
+            }
+        }
+        void YETKILISTE()
+        {
+            try
+            {
+                ASPxGridView2.DataSource = HelperDataLib.Select.S_YETKI_YUKLE();
+                ASPxGridView2.DataBind();
+            }
+            catch (Exception c)
+            {
+
+                throw;
+            }
+        }
+
+        protected void ASPxButton2_Click(object sender, EventArgs e)
+        {
+            TEMIZLE();
+            MESAJKAPAT();
+        }
+
+        protected void ASPxTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
